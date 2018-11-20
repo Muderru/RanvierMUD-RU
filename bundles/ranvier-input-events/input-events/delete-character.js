@@ -15,7 +15,7 @@ module.exports = (srcPath) => {
       const write = EventUtil.genWrite(socket);
 
       say("\r\n------------------------------");
-      say("|      Delete a Character");
+      say("|      Удалить персонажа");
       say("------------------------------");
 
       const characters = account.characters.filter(currChar => currChar.deleted === false);
@@ -30,19 +30,19 @@ module.exports = (srcPath) => {
               say('');
               confirmation = confirmation.toString().trim().toLowerCase();
 
-              if (!/[yn]/.test(confirmation)) {
-                say('<b>Invalid Option</b>')
+              if (!/[дн]/.test(confirmation)) {
+                say('<b>Недопустимая опция</b>')
                 return socket.emit('choose-character', socket, args);
               }
 
-              if (confirmation === 'n') {
-                say('No one was deleted...');
+              if (confirmation === 'н') {
+                say('Никого не удалили...');
                 return socket.emit('choose-character', socket, args);
               }
 
               say(`Deleting ${char.username}`);
               account.deleteCharacter(char.username);
-              say('Character deleted.');
+              say('Персонаж удален.');
               return socket.emit('choose-character', socket, args);
             });
           },
@@ -52,7 +52,7 @@ module.exports = (srcPath) => {
       options.push({ display: "" });
       
       options.push({
-        display: 'Go back to main menu',
+        display: 'Возврат в главное меню',
         onSelect: () => {
           socket.emit('choose-character', socket, args);
         },
@@ -80,7 +80,7 @@ module.exports = (srcPath) => {
         const selection = options.filter(o => !!o.onSelect)[choice];
 
         if (selection) {
-          Logger.log('Selected ' + selection.display);
+          Logger.log('Выбран ' + selection.display);
           return selection.onSelect();
         }
 

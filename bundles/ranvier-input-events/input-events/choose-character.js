@@ -22,7 +22,7 @@ module.exports = (srcPath) => {
       * Can create new (if less than 3 living chars)
       */
       say("\r\n------------------------------");
-      say("|      Choose your fate");
+      say("|      Выберите:");
       say("------------------------------");
 
       // This just gets their names.
@@ -35,7 +35,7 @@ module.exports = (srcPath) => {
 
       // Configure account options menu
       options.push({
-        display: 'Change Password',
+        display: 'Поменять пароль',
         onSelect: () => {
           socket.emit('change-password', socket, { account, nextStage: 'choose-character' });
         },
@@ -43,7 +43,7 @@ module.exports = (srcPath) => {
 
       if (canAddCharacter) {
         options.push({
-          display: 'Create New Character',
+          display: 'Создать нового персонажа',
           onSelect: () => {
             handleMultiplaying();
             socket.emit('create-player', socket, { account });
@@ -52,7 +52,7 @@ module.exports = (srcPath) => {
       }
 
       if (characters.length) {
-        options.push({ display: "Login As:" });
+        options.push({ display: "Войти в игру как:" });
         characters.forEach(char => {
           options.push({
             display: char.username,
@@ -65,7 +65,7 @@ module.exports = (srcPath) => {
                 })
                 .catch(err => {
                   Logger.warn(err);
-                  say('Failed to log in to your character. Please contact an administrator.');
+                  say('Ошибка входа в игру. Пожалуйста свяжитесь с администратором.');
                   socket.emit('close');
                 });
             },

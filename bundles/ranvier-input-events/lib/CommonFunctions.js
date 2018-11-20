@@ -16,16 +16,16 @@ exports.validateName = function(name) {
   const minLength = Config.get('minAccountNameLength');
 
   if (!name) {
-    return 'Please enter a name.';
+    return 'Пожалуйста, введите имя.';
   }
   if (name.length > maxLength) {
-    return 'Too long, try a shorter name.';
+    return 'Слишком длинно, попробуйте короче.';
   }
   if (name.length < minLength) {
-    return 'Too short, try a longer name.';
+    return 'Слишком короткое, попробуйте длиннее.';
   }
-  if (!/^[a-z]+$/i.test(name)) {
-    return 'Your name may only contain A-Z without spaces or special characters.';
+  if (!/^[a-я]+$/i.test(name)) {
+    return 'Ваше имя может содержать русские или английские буквы без пробелов или специальных символов.';
   }
   return false;
 }

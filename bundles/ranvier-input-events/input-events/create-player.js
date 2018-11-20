@@ -12,7 +12,7 @@ module.exports = (srcPath) => {
       const say    = EventUtil.genSay(socket);
       const write  = EventUtil.genWrite(socket);
 
-      write("<bold>What would you like to name your character?</bold> ");
+      write("<bold>Какое имя вы желаете для вашего персонажа?</bold> ");
       socket.once('data', name => {
         say('');
         name = name.toString().trim();

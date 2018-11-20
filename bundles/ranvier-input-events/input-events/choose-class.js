@@ -18,7 +18,7 @@ module.exports = (srcPath) => {
       * Can select existing player
       * Can create new (if less than 3 living chars)
       */
-      say('  Pick your class');
+      say('  Выберите ваш класс');
       say(' --------------------------');
       const classes = [...state.ClassManager].map(([id, instance]) => {
         return [id, instance.config];

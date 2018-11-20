@@ -21,7 +21,7 @@ module.exports = (srcPath) => {
       player._lastCommandTime = Date.now();
 
       player.socket.on('close', () => {
-        Logger.log(player.name + ' has gone linkdead.');
+        Logger.log(player.name + ' без связи.');
         // TODO: try to fetch the person the player is fighting and dereference the player
         //if (player.inCombat.inCombat) {
         //  player.inCombat.inCombat = null;

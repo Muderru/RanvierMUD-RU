@@ -12,6 +12,11 @@ module.exports = (srcPath) => {
     event: state => (socket, args) => {
       let player = new Player({
         name: args.name,
+        rname: args.rname,
+        dname: args.dname,
+        vname: args.vname,
+        tname: args.tname,
+        pname: args.pname,
         account: args.account,
         // TIP:DefaultAttributes: This is where you can change the default attributes for players
         attributes: {

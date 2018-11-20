@@ -14,7 +14,12 @@ const { Inventory, InventoryFullError } = require('./Inventory');
 /**
  * The Character class acts as the base for both NPCs and Players.
  *
- * @property {string}     name       Name shown on look/who/login
+ * @property {string}     name       Name shown on look/who/login (именительный падеж)
+ * @property {string}     rname       (Родительный падеж - кого? чего?)
+ * @property {string}     dname       (Дательный падеж - дать кому? чему?)
+ * @property {string}     vname       (Винительный падеж - вижу кого? что?)
+ * @property {string}     tname       (Творительный падеж - доволен кем? чем?)
+ * @property {string}     pname       (Предложный падеж - думать о ком? о чем?)
  * @property {Inventory}  inventory
  * @property {Set}        combatants Enemies this character is currently in combat with
  * @property {number}     level
@@ -31,6 +36,11 @@ class Character extends Metadatable(EventEmitter) {
     super();
 
     this.name = data.name;
+    this.rname = data.rname;
+    this.dname = data.dname;
+    this.vname = data.vname;
+    this.tname = data.tname;
+    this.pname = data.pname;
     this.inventory = new Inventory(data.inventory || {});
     this.equipment = data.equipment || new Map();
     this.combatants = new Set();
@@ -463,6 +473,11 @@ class Character extends Metadatable(EventEmitter) {
       attributes: this.attributes.serialize(),
       level: this.level,
       name: this.name,
+      rname: this.rname,
+      dname: this.dname,
+      vname: this.vname,
+      tname: this.tname,
+      pname: this.pname,
       room: this.room.entityReference,
       effects: this.effects.serialize(),
     };
