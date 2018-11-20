@@ -1,0 +1,37 @@
+{
+  "name": "ranviermud",
+  "version": "2.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shawncplus/ranviermud.git"
+  },
+  "engines": {
+    "node": ">= 10.12.0"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "./ranvier -v --save=10 --respawn=10",
+    "build-docs": "jsdoc -c jsdoc.conf",
+    "bundle-install": "node setup-bundles"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.0",
+    "commander": "^2.19.0",
+    "js-yaml": "^3.12.0",
+    "longjohn": "^0.2.11",
+    "optimist": "",
+    "pretty-error": "^2.0.2",
+    "rando-js": "^0.1.1",
+    "semver": "^5.6.0",
+    "sprintf-js": "^1.0.3",
+    "sty": "",
+    "uuid": "^3.3.2",
+    "winston": "^2.4.4",
+    "wrap-ansi": "^2.0.0"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.5.5",
+    "ndb": "^1.0.26",
+    "tui-jsdoc-template": "^1.2.2"
+  }
+}
