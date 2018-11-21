@@ -34,7 +34,7 @@ module.exports = (srcPath) => {
         }
 
         args.pname = pname;
-        socket.emit('choose-class', socket, args);
+        socket.emit('create-gender', socket, args);
       });
     }
   };

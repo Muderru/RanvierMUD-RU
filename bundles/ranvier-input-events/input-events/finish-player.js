@@ -17,6 +17,7 @@ module.exports = (srcPath) => {
         vname: args.vname,
         tname: args.tname,
         pname: args.pname,
+        gender: args.gender,
         account: args.account,
         // TIP:DefaultAttributes: This is where you can change the default attributes for players
         attributes: {

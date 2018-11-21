@@ -20,6 +20,7 @@ const { Inventory, InventoryFullError } = require('./Inventory');
  * @property {string}     vname       (Винительный падеж - вижу кого? что?)
  * @property {string}     tname       (Творительный падеж - доволен кем? чем?)
  * @property {string}     pname       (Предложный падеж - думать о ком? о чем?)
+ * @property {string}     gender      (род - male, female, neuter, plural)
  * @property {Inventory}  inventory
  * @property {Set}        combatants Enemies this character is currently in combat with
  * @property {number}     level
@@ -41,6 +42,7 @@ class Character extends Metadatable(EventEmitter) {
     this.vname = data.vname;
     this.tname = data.tname;
     this.pname = data.pname;
+    this.gender = data.gender;
     this.inventory = new Inventory(data.inventory || {});
     this.equipment = data.equipment || new Map();
     this.combatants = new Set();
@@ -478,6 +480,7 @@ class Character extends Metadatable(EventEmitter) {
       vname: this.vname,
       tname: this.tname,
       pname: this.pname,
+      gender: this.gender,
       room: this.room.entityReference,
       effects: this.effects.serialize(),
     };

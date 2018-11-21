@@ -25,9 +25,7 @@ module.exports = (srcPath) => {
         }
         
         socket.emit('create-rname', socket, args);
-/**
-        socket.emit('choose-class', socket, args);
-*/ 
+ 
       });
     }
   };
