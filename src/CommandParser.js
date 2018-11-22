@@ -35,7 +35,7 @@ class CommandParser {
     // Kludge so that 'l' alone will always force a look,
     // instead of mixing it up with lock or list.
     // TODO: replace this a priority list
-    if (command === 'l') {
+    if (command === 'см') {
       return {
         type: CommandType.COMMAND,
         command: state.CommandManager.get('look'),
@@ -44,7 +44,7 @@ class CommandParser {
     }
 
     // Same with 'i' and inventory.
-    if (command === 'i') {
+    if (command === 'и' || command === 'инв') {
       return {
         type: CommandType.COMMAND,
         command: state.CommandManager.get('inventory'),
@@ -54,17 +54,17 @@ class CommandParser {
 
     // check for direction shortcuts
     const directions = {
-      'n':  'north',
-      'e':  'east',
-      's':  'south',
-      'w':  'west',
-      'u':  'up',
-      'd':  'down',
+      'с':  'север',
+      'в':  'восток',
+      'ю':  'юг',
+      'з':  'запад',
+      'вв':  'вверх',
+      'вн':  'вниз',
 
-      'ne': 'northeast',
-      'se': 'southeast',
-      'nw': 'northwest',
-      'sw': 'southwest',
+      'св': 'северо-восток',
+      'юв': 'юго-восток',
+      'сз': 'северо-запад',
+      'юз': 'юго-запад',
     };
 
     const moveCommand = state.Config.get("moveCommand");

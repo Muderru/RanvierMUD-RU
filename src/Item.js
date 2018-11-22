@@ -19,6 +19,12 @@ const { Inventory, InventoryFullError } = require('./Inventory');
  * @property {boolean} isEquipped  Whether or not item is currently equipped
  * @property {Map}     inventory   Current items this item contains
  * @property {string}  name        Name shown in inventory and when equipped
+ * @property {string}     rname       (Родительный падеж - кого? чего?)
+ * @property {string}     dname       (Дательный падеж - дать кому? чему?)
+ * @property {string}     vname       (Винительный падеж - вижу кого? что?)
+ * @property {string}     tname       (Творительный падеж - доволен кем? чем?)
+ * @property {string}     pname       (Предложный падеж - думать о ком? о чем?)
+ * @property {string}     gender      (род - male, female, neuter, plural) 
  * @property {Room}    room        Room the item is currently in
  * @property {string}  roomDesc    Description shown when item is seen in a room
  * @property {string}  script      A custom script for this item
@@ -57,6 +63,12 @@ class Item extends Metadatable(EventEmitter) {
     this.isEquipped  = item.isEquipped || false;
     this.keywords    = item.keywords;
     this.name        = item.name;
+    this.rname       = item.rname;
+    this.dname       = item.dname;
+    this.vname       = item.vname;
+    this.tname       = item.tname;
+    this.pname       = item.pname;
+    this.gender      = item.gender;
     this.room        = item.room || null;
     this.roomDesc    = item.roomDesc || '';
     this.script      = item.script || null;
