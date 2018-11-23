@@ -1,12 +1,15 @@
 ---
 body: |
-  This MUD was built using the Ranvier codebase. You can find out more about Ranvier and its developers at http://ranviermud.com
+  Этот MUD создан на кодовой базе Ranvier. Больше информации про нее вы найдете на сайте http://ranviermud.com.
 
-  Creator
+  Создатель
   ---
   Shawn Biddle   (github.com/shawncplus)
 
-  Developers
+  Разработчики
   ---
   Sean O'Donohue (github.com/seanohue)
   Josh Williams  (github.com/jackjwilliams)
+  
+  Русификация
+  Жилин Игорь (Туор) (github.com/Muderru)

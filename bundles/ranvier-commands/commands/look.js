@@ -14,6 +14,7 @@ module.exports = (srcPath, bundlePath) => {
 
   return {
     usage: "смотреть [объект]",
+    aliases: ['смотреть'],
     command: state => (args, player) => {
       if (!player.room) {
         Logger.error(player.getName() + ' в бездне.');
@@ -87,11 +88,11 @@ module.exports = (srcPath, bundlePath) => {
       B.sayAt(player, B.line(65, ' ') + '<yellow><b>' + line3 + '</b></yellow>');
     }
 
-    if (!player.getMeta('config.brief')) {
+    if (!player.getMeta('config.краткий')) {
       B.sayAt(player, room.description, 80);
     }
 
-    if (player.getMeta('config.minimap')) {
+    if (player.getMeta('config.миникарта')) {
       B.sayAt(player, '');
       state.CommandManager.get('map').execute(4, player);
     }

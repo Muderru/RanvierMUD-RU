@@ -35,7 +35,7 @@ class CommandParser {
     // Kludge so that 'l' alone will always force a look,
     // instead of mixing it up with lock or list.
     // TODO: replace this a priority list
-    if (command === 'см' || command === 'смотреть') {
+    if (command === 'см') {
       return {
         type: CommandType.COMMAND,
         command: state.CommandManager.get('look'),
@@ -51,7 +51,7 @@ class CommandParser {
         args: args
       };
     }
-
+    
     // check for direction shortcuts
     const directions = {
       'с':  'север',

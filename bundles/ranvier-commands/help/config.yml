@@ -1,16 +1,16 @@
 ---
-command: config
+command: настройки
 body: |
-  Modify configuration settings
+  Изменяет конфигурационные настройки
 
-  Extended usage
-  config list               - List configured settings
-  config set setting value  - Change setting value
+  Примеры использования
+  настройки список                        - Список модифицируемых параметров
+  настройки установить параметр значение  - Изменить значение параметра
 
-  Possible Settings / Values 
-  autoloot    - (on / off)
-  brief       - (on / off)
-  minimap     - (on / off)
+  Допустимые настройки / Значения 
+  autoloot    - (вкл / выкл)
+  раткий      - (вкл / выкл)
+  миникарта   - (вкл / выкл)
 
-  Example
-  config set autoloot on  - Turn on autoloot
+  Примеры
+  настройка установить autoloot вкл  - Включает автоматический сбор лута
