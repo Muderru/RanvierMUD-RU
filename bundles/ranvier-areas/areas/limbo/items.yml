@@ -45,7 +45,7 @@
   gender: "male"
   roomDesc: "Деревянный сундук стоит в углу комнаты, его петли сильно заржавели."
   keywords: [ "деревянный", "сундук" ]
-  description: "Время не пощадило этот сундук, он покрыт толстым слоем пыли и ржавчины"
+  description: "Время не пощадило этот сундук, он покрыт толстым слоем пыли и ржавчины."
   items: [ "limbo:rustysword", "limbo:leathervest", "limbo:potionhealth1", "limbo:potionstrength1" ]
   closed: true
   maxItems: 5

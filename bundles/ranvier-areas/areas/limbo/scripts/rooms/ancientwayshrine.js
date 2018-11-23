@@ -7,7 +7,7 @@ module.exports = (srcPath) => {
     listeners: {
       playerEnter: state => function (player) {
         Broadcast.sayAt(player);
-        Broadcast.sayAt(player, `<b><cyan>Hint: Waypoints allow you to travel vast distances. Save waypoints with '<white>waypoint save</white>', set your preferred home with '<white>waypoint home</white>. If you have enough energy you can return home at any time with '<white>recall</white>'.</cyan></b>`, 80);
+        Broadcast.sayAt(player, `<b><cyan>Подсказка: Порталы позволяют путешествовать на отдаленные расстояния. Сохраняйте путевые точки командой '<white>портал сохранить</white>', установите дом командой '<white>портал дом</white>. Если у вас достаточно энергии, то вы можете вернуться домой командой '<white>возврат</white>'.</cyan></b>`, 80);
       }
     }
   };

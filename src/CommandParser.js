@@ -35,7 +35,7 @@ class CommandParser {
     // Kludge so that 'l' alone will always force a look,
     // instead of mixing it up with lock or list.
     // TODO: replace this a priority list
-    if (command === 'см') {
+    if (command === 'см' || command === 'смотреть') {
       return {
         type: CommandType.COMMAND,
         command: state.CommandManager.get('look'),

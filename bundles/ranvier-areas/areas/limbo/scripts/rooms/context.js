@@ -6,7 +6,7 @@ module.exports = (srcPath) => {
   return  {
     listeners: {
       command: state => function (player, commandName, args) {
-        Broadcast.sayAt(player, `You just executed room context command '${commandName}' with arguments ${args}`);
+        Broadcast.sayAt(player, `Вы сейчас набрали специфичную для этой комнаты команду '${commandName}' с аргументом ${args}`);
       }
     }
   };
