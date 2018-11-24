@@ -1,6 +1,6 @@
 ---
-command: flush
+command: очистить
 body: |
-  Flush currently queued commands
+  Очищает последовательность команд
 related:
-- queue
+- последовательность

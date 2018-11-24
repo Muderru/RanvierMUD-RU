@@ -1,14 +1,13 @@
 ---
-command: drop
+command: бросить
 body: |
-  Drop an item from your inventory onto the ground
+  Вы можете выбросить вещь из инвентаря.
 related:
-  - get
-  - give
-  - inventory
-  - put
-  - remove
-  - wear
-  - wield
+  - бросить
+  - дать
+  - инвентарь
+  - положить
+  - одеть
+  - вооружиться
 keywords:
-  - loot
+  - предметы

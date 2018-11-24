@@ -1,12 +1,12 @@
 ---
-command: give
+command: дать
 body: |
-  Give an item to a target. Note: NPCs can only accept items they care about.
+  Позволяет передать предмет цели. НПС могут взять только то, что им нужно.
 related:
-  - put
-  - get
-  - drop
-  - inventory
+  - положить
+  - взять
+  - бросить
+  - инвентарь
 keywords:
-  - items
-  - inventory
+  - предметы
+  - инвентарь

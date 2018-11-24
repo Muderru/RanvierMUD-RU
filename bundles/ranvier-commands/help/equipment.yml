@@ -1,10 +1,10 @@
 ---
-command: equipment
+command: экипировка
 body: |
-  View currently worn equipment
+  Позволяет вам просмотреть надетое снаряжение.
 related:
-  - inventory
-  - wear
-  - remove
+  - инвентарь
+  - надеть
+  - снять
 keywords:
-- loot
+- предметы

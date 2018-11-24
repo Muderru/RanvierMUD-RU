@@ -1,8 +1,8 @@
 ---
-command: emote
+command: эмоция
 body: |
-  Send a message to the room.
-  Your message may refer to specific players and items with ~<player/item name>.
+  Отправляет сообщение всем в комнате.
+  Ваше сообщение может касаться определенного ~<игрока/предмета>.
 
 keywords:
-  - emote
+  - эмоция

@@ -52,6 +52,15 @@ class CommandParser {
       };
     }
     
+    // Сокращения для экипировки.
+    if (command === 'э' || command === 'экип') {
+      return {
+        type: CommandType.COMMAND,
+        command: state.CommandManager.get('equipment'),
+        args: args
+      };
+    }
+    
     // check for direction shortcuts
     const directions = {
       'с':  'север',

@@ -1,17 +1,16 @@
 ---
-command: get
+command: взять
 body: |
-  Get an item from the room or a container.
+  Позволяет вам взять предмет из комнаты или контейнера.
 
-  You can do '<b>get all <container></b>' to retrieve all items from the container.
-  To save even more time you can do '<b>loot <container></b>' which is the same thing.
+  Вы можете набрать '<b>взять все <контейнер></b>', чтобы забрать все из контейнера.
 related:
-  - drop
-  - give
-  - inventory
-  - put
-  - wear
-  - wield
+  - бросить
+  - дать
+  - инвентарь
+  - положить
+  - одеть
+  - вооружиться
 keywords:
-  - items
-  - inventory
+  - предметы
+  - инвентарь
