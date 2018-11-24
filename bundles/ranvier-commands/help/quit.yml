@@ -1,6 +1,6 @@
 ---
-command: quit
+command: конец
 body: |
-  Quit the game (cannot be in combat when quitting)
+  Позволяет вам выйти из игры (нельзя во время боя)
 related:
-- save
+- сохранить

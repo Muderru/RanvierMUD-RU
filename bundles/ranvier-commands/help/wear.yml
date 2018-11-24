@@ -1,9 +1,9 @@
 ---
-command: wear
+command: надеть
 body: |
-  Wear an item
+  Одевает предмет на тело.
 related:
-- equipment
-- remove
+- экипировка
+- снять
 keywords:
-- loot
+- предметы

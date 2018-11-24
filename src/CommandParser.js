@@ -61,6 +61,15 @@ class CommandParser {
       };
     }
     
+    // Сокращения для оглядеться.
+    if (command === 'огл') {
+      return {
+        type: CommandType.COMMAND,
+        command: state.CommandManager.get('scan'),
+        args: args
+      };
+    }
+    
     // check for direction shortcuts
     const directions = {
       'с':  'север',

@@ -4,9 +4,10 @@ module.exports = (srcPath) => {
   const Broadcast = require(srcPath + 'Broadcast');
 
   return {
-    usage: 'who',
+    usage: 'кто',
+    aliases: [ 'кто' ],
     command: (state) => (args, player) => {
-      Broadcast.sayAt(player, "<bold><red>                  Who's Online</bold></red>");
+      Broadcast.sayAt(player, "<bold><red>                  Сейчас в игре</bold></red>");
       Broadcast.sayAt(player, "<bold><red>===============================================</bold></red>");
       Broadcast.sayAt(player, '');
 
@@ -14,13 +15,13 @@ module.exports = (srcPath) => {
         Broadcast.sayAt(player, ` *  ${otherPlayer.name} ${getRoleString(otherPlayer.role)}`);
       });
 
-      Broadcast.sayAt(player, state.PlayerManager.players.size + ' total');
+      Broadcast.sayAt(player, state.PlayerManager.players.size + ' всего');
 
       function getRoleString(role = 0) {
         return [
           '',
-          '<white>[Builder]</white>',
-          '<b><white>[Admin]</white></b>'
+          '<white>[Билдер]</white>',
+          '<b><white>[Администратор]</white></b>'
         ][role] || '';
       }
     }

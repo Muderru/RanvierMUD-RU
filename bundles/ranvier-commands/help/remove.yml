@@ -1,8 +1,8 @@
 ---
-command: remove
+command: снять
 body: |
-  Remove equipped item
+  Снимает одетую вещь
 related:
-  - equipment
-  - inventory
-  - wear
+  - экипировка
+  - инвентарь
+  - одеть

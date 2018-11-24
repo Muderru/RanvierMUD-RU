@@ -8,27 +8,27 @@ module.exports = srcPath => {
 
   const subcommands = new CommandManager();
   subcommands.add({
-    name: 'list',
+    name: 'список',
     command: state => (args, player) => {
       const waypoints = player.getMeta('waypoints');
 
       if (!waypoints || !waypoints.saved.length) {
-        return B.sayAt(player, 'You haven\'t saved any waypoints.');
+        return B.sayAt(player, 'У вас нет сохраненных путеводных точек.');
       }
 
-      B.sayAt(player, 'Waypoints:');
+      B.sayAt(player, 'Порталы:');
       for (const [i, savedWaypoint] of Object.entries(waypoints.saved)) {
         const room = state.RoomManager.getRoom(savedWaypoint);
-        B.sayAt(player, sprintf('%2s) %s%s', i + 1, waypoints.home === room.entityReference ? '(H) ' : '', room.title));
+        B.sayAt(player, sprintf('%2s) %s%s', i + 1, waypoints.home === room.entityReference ? '(Д) ' : '', room.title));
       }
     }
   });
 
   subcommands.add({
-    name: 'save',
+    name: 'сохранить',
     command: state => (args, player) => {
       if (!player.room.hasBehavior('waypoint')) {
-        return B.sayAt(player, 'You are not at a wayshrine.');
+        return B.sayAt(player, 'Вы не у портала.');
       }
 
       let waypoints = player.getMeta('waypoints');
@@ -39,82 +39,83 @@ module.exports = srcPath => {
       };
 
       if (waypoints.saved.includes(player.room.entityReference)) {
-        return B.sayAt(player, 'You already saved this waypoint.');
+        return B.sayAt(player, 'Вы уже сохранили эту путеводную точку.');
       }
 
       waypoints.saved.push(player.room.entityReference);
       player.setMeta('waypoints', waypoints);
-      B.sayAt(player, `${player.room.title} saved to your waypoints. Use '<b>waypoint home</b>' to set as your home waypoint.`);
+      B.sayAt(player, `${player.room.title} сохранено в списке. Используйте '<b>портал дом</b>' для установки домашнего портала.`);
     }
   });
 
   subcommands.add({
-    name: 'home',
+    name: 'дом',
     command: state => (args, player) => {
       if (!player.room.hasBehavior('waypoint')) {
-        return B.sayAt(player, 'You are not at a wayshrine.');
+        return B.sayAt(player, 'Вы не у портала.');
       }
 
       const waypoints = player.getMeta('waypoints');
 
       if (!waypoints || !waypoints.saved.includes(player.room.entityReference)) {
-        return B.sayAt(player, 'You haven\'t saved this wayshrine.');
+        return B.sayAt(player, 'Вы не сохранили эту путеводную точку.');
       }
 
       player.setMeta('waypoints.home', player.room.entityReference);
-      B.sayAt(player, `${player.room.title} is now your home waypoint.`);
+      B.sayAt(player, `${player.room.title} теперь ваша домашняя путеводная точка.`);
     }
   });
 
   subcommands.add({
-    name: 'travel',
+    name: 'переместиться',
     command: state => (args, player) => {
       if (!args || !args.length) {
-        return B.sayAt(player, 'Travel where? (waypoint travel #)');
+        return B.sayAt(player, 'Переместиться куда? (портал переместиться #)');
       }
 
       if (!player.room.hasBehavior('waypoint')) {
-        return B.sayAt(player, 'You may only travel while at a waypoint.');
+        return B.sayAt(player, 'Вы можете перемещаться только между порталами.');
       }
 
       const waypoints = player.getMeta('waypoints');
 
       if (!waypoints || !waypoints.saved.length) {
-        return B.sayAt(player, 'You haven\'t saved any waypoints.');
+        return B.sayAt(player, 'У вас нет сохраненных путеводных точек.');
       }
 
       const index = parseInt(args, 10) - 1;
       if (isNaN(index) || !waypoints.saved[index]) {
-        return B.sayAt(player, 'Invalid waypoint.');
+        return B.sayAt(player, 'Недопустимый портал.');
       }
 
       const waypoint = waypoints.saved[index];
       const nextRoom = state.RoomManager.getRoom(waypoint);
 
-      B.sayAt(player, '<b><cyan>You walk up and touch the waypillar, you are consumed by a bright blue light.</cyan></b>');
-      B.sayAtExcept(player.room, `<b><cyan>${player.name} walks up and touches the waypillar and disappears in a flash of blue light.</cyan></b>`, [player]);
+      B.sayAt(player, '<b><cyan>Вы прикасаетесь к порталу, его руны вспыхивают и вас окутывает голубое сияние.</cyan></b>');
+      B.sayAtExcept(player.room, `<b><cyan>${player.name} прикасается к порталу и исчезает в спышке голубого света.</cyan></b>`, [player]);
 
       player.moveTo(nextRoom, _ => {
         state.CommandManager.get('look').execute('', player);
 
-        B.sayAt(player, '<b><cyan>The blue light dims and you find yourself at the next wayshrine.</cyan></b>');
-        B.sayAtExcept(player.room, `<b><cyan>The waypiller glows brightly and ${player.name} appears in a flash of blue light.</cyan></b>`, [player]);
+        B.sayAt(player, '<b><cyan>Голубое сияние угасает и вы обнаруживаете себя у другого портала.</cyan></b>');
+        B.sayAtExcept(player.room, `<b><cyan>Руны портала вспыхивают и ${player.name} появляется в спышке голубого света.</cyan></b>`, [player]);
       });
     }
   });
 
   return {
-    usage: 'waypoint list, save, travel #',
+    usage: 'портал список, сохранить, переместиться #',
+    aliases: [ 'портал', 'порталы' ],
     command: state => (args, player) => {
       if (!args || !args.length) {
-        args = 'list';
+        args = 'список';
       }
 
       const [ command, ...commandArgs ] = args.split(' ');
       const subcommand = subcommands.find(command);
 
       if (!subcommand) {
-        return B.sayAt(player, 'Invalid waypoint command.');
+        return B.sayAt(player, 'Недопустимая команда для портала.');
       }
 
       subcommand.command(state)(commandArgs.join(' '), player);

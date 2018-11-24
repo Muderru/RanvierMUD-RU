@@ -1,4 +1,4 @@
 ---
-command: move
+command: идти
 body: |
-  Move in the given direction
+  Позволяет перемещаться в указанном направлении.

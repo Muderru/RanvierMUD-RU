@@ -7,14 +7,15 @@ module.exports = (srcPath) => {
   const Logger = require(srcPath + 'Logger');
 
   return {
-    usage: 'talk <npc> <message>',
+    usage: 'сказать <нпс> <сообщение>',
+    aliases: [ 'сказать' ],
     command : (state) => (args, player) => {
       if (!args.length) {
-        return B.sayAt(player, 'Who are you trying to talk to?');
+        return B.sayAt(player, 'Что и кому вы хотите сказать?');
       }
 
       if (!player.room) {
-        return B.sayAt(player, 'You are floating in the nether, you cannot speak.');
+        return B.sayAt(player, 'Вы зависли в нигде, вы не можете говорить.');
       }
 
       let [ npcSearch, ...messageParts ] = args.split(' ');
@@ -27,21 +28,30 @@ module.exports = (srcPath) => {
       }
 
       if (!npcSearch) {
-        return B.sayAt(player, 'Who are you trying to talk to?');
+        return B.sayAt(player, 'Кому вы хотите сказать?');
       }
 
       if (!message.length) {
-        return B.sayAt(player, 'What did you want to say?');
+        return B.sayAt(player, 'что вы хотите сказать?');
       }
 
       const npc = Parser.parseDot(npcSearch, player.room.npcs);
       if (!npc) {
-        return B.sayAt(player, "You don't see them here.");
+        return B.sayAt(player, "Вы не видите его здесь.");
       }
 
-      B.sayAt(player, `<b><cyan>You say to ${npc.name}, '${message}'</cyan></b>`);
+      B.sayAt(player, `<b><cyan>Вы сказали ${npc.dname}, '${message}'</cyan></b>`);
       if (!npc.hasBehavior('ranvier-sentient')) {
-        return B.sayAt(player, "They don't seem to understand you.");
+         if (npc.gender === 'male') {
+           return B.sayAt(player, "Он не понимает вас.");
+         } else if (npc.gender === 'female') {
+           return B.sayAt(player, "Она не понимает вас.");
+         } else if (npc.gender === 'plural') {
+           return B.sayAt(player, "Они не понимает вас.");
+         } else {
+           return B.sayAt(player, "Оно не понимает вас.");
+         }
+
       }
 
       npc.emit('conversation', player, message);

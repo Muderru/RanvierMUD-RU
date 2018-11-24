@@ -1,6 +1,6 @@
 ---
-command: save
+command: сохранить
 body: |
-  Save current player state
+  Сохраняет текущее состояние игрока
 related:
-- quit
+- конец

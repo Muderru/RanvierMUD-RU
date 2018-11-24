@@ -1,14 +1,14 @@
 ---
-command: put
+command: положить
 body: |
-  Put an item in a container
+  Позволяет вам положить вещь в контейнер
 related:
-  - drop
-  - get
-  - give
-  - inventory
-  - wear
-  - wield
+  - бросить
+  - взять
+  - дать
+  - инвентарь
+  - одеть
+  - вооружиться
 keywords:
-  - items
-  - inventory
+  - предметы
+  - инвентарь

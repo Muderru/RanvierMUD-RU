@@ -1,6 +1,6 @@
 ---
-command: queue
+command: очередь
 body: |
-  View current queue of commands for the player
+  Показывает текущую очередь команд.
 related:
-- flush
+- очистить

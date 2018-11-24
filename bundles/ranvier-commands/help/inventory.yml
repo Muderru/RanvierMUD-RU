@@ -1,11 +1,11 @@
 ---
-command: inventory
+command: инвентарь
 body: |
-  View current items in your inventory
+  Выводит список того, что есть в вашем инвентаре.
 related:
-  - equipment
-  - get
-  - drop
-  - put
+  - экипировка
+  - взять
+  - бросить
+  - положить
 keywords:
-- loot
+- предметы

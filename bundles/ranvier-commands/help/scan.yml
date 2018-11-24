@@ -1,4 +1,4 @@
 ---
-command: scan
+command: оглядеться
 body: |
-  Check enemies and players in surrounding rooms
+  Выдает информацию о монстрах и игроках в окружающих комнатах.
