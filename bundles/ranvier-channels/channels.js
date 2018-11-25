@@ -11,7 +11,7 @@ module.exports = (srcPath) => {
   return [
     new Channel({
       name: 'оос',
-      aliases: ['.', 'оос'],
+      aliases: ['.'],
       color: ['bold', 'green'],
       description: 'Оправить сообщение всем в игре.',
       audience: new WorldAudience()
@@ -19,7 +19,6 @@ module.exports = (srcPath) => {
 
     new Channel({
       name: 'говорить',
-      aliases: ['говорить'],
       color: ['yellow'],
       description: 'Оправить сообщение всем в комнате.',
       audience: new RoomAudience(),
@@ -44,7 +43,6 @@ module.exports = (srcPath) => {
 
     new Channel({
       name: 'сказать',
-      aliases: ['сказать'],
       color: ['bold', 'cyan'],
       description: 'Отправить приватное сообщение другому игроку.',
       audience: new PrivateAudience(),
@@ -69,7 +67,7 @@ module.exports = (srcPath) => {
 
     new Channel({
       name: 'кричать',
-      aliases: ['кричать', 'орать'],
+      aliases: ['орать'],
       color: ['bold', 'red'],
       description: 'Оправить сообщение всем в комнате.',
       audience: new AreaAudience(),
@@ -86,7 +84,6 @@ module.exports = (srcPath) => {
 
     new Channel({
       name: 'гговорить',
-      aliases: ['гговорить'],
       color: ['bold', 'green'],
       description: 'Оправить сообщение всем членам вашей группы.',
       audience: new PartyAudience(),
