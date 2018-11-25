@@ -9,7 +9,7 @@ module.exports = (srcPath, bundlePath) => {
   const say = Broadcast.sayAt;
 
   return {
-    aliases: [ 'одеть', 'надеть' ],
+    aliases: [ 'одеть', 'надеть', 'вооружиться' ],
     usage: 'надеть <предмет>',
     command : (state) => (arg, player) => {
       arg = arg.trim();
