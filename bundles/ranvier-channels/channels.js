@@ -10,73 +10,101 @@ module.exports = (srcPath) => {
 
   return [
     new Channel({
-      name: 'chat',
-      aliases: ['.'],
+      name: 'оос',
+      aliases: ['.', 'оос'],
       color: ['bold', 'green'],
-      description: 'Chat with everyone on the game',
+      description: 'Оправить сообщение всем в игре.',
       audience: new WorldAudience()
     }),
 
     new Channel({
-      name: 'say',
+      name: 'говорить',
+      aliases: ['говорить'],
       color: ['yellow'],
-      description: 'Send a message to all players in your room',
+      description: 'Оправить сообщение всем в комнате.',
       audience: new RoomAudience(),
       formatter: {
         sender: function (sender, target, message, colorify) {
-          return colorify(`You say: '${message}'`);
+            return colorify(`Вы говорите: '${message}'`);
         },
 
         target: function (sender, target, message, colorify) {
-          return colorify(`${sender.name} says: '${message}'`);
+          if (sender.gender === 'male') {
+            return colorify(`${sender.name} говорит: '${message}'`);
+          } else if (sender.gender === 'female') {
+            return colorify(`${sender.name} говорит: '${message}'`);
+          } else if (sender.gender === 'plural') {
+            return colorify(`${sender.name} говорят: '${message}'`);
+          } else {
+            return colorify(`${sender.name} говорит: '${message}'`);
+          }
         }
       }
     }),
 
     new Channel({
-      name: 'tell',
+      name: 'сказать',
+      aliases: ['сказать'],
       color: ['bold', 'cyan'],
-      description: 'Send a private message to another player',
+      description: 'Отправить приватное сообщение другому игроку.',
       audience: new PrivateAudience(),
       formatter: {
         sender: function (sender, target, message, colorify) {
-          return colorify(`You tell ${target.name}, '${message}'`);
+          return colorify(`Вы сказали ${target.dname}: '${message}'`);
         },
 
         target: function (sender, target, message, colorify) {
-          return colorify(`${sender.name} tells you, '${message}'`);
+          if (sender.gender === 'male') {
+            return colorify(`${sender.name} сказал вам: '${message}'`);
+          } else if (sender.gender === 'female') {
+            return colorify(`${sender.name} сказала вам: '${message}'`);
+          } else if (sender.gender === 'plural') {
+            return colorify(`${sender.name} сказали вам: '${message}'`);
+          } else {
+            return colorify(`${sender.name} сказало вам: '${message}'`);
+          }            
         }
       }
     }),
 
     new Channel({
-      name: 'yell',
+      name: 'кричать',
+      aliases: ['кричать', 'орать'],
       color: ['bold', 'red'],
-      description: 'Send a message to everyone in your area',
+      description: 'Оправить сообщение всем в комнате.',
       audience: new AreaAudience(),
       formatter: {
         sender: function (sender, target, message, colorify) {
-          return colorify(`You yell, '${message}'`);
+          return colorify(`Вы кричите: '${message}'`);
         },
 
         target: function (sender, target, message, colorify) {
-          return colorify(`Someone yells from nearby, '${message}'`);
+          return colorify(`Кто-то кричит неподалеку: '${message}'`);
         }
       }
     }),
 
     new Channel({
-      name: 'gtell',
+      name: 'гговорить',
+      aliases: ['гговорить'],
       color: ['bold', 'green'],
-      description: 'Send a message to everyone in your group, anywhere in the game',
+      description: 'Оправить сообщение всем членам вашей группы.',
       audience: new PartyAudience(),
       formatter: {
         sender: function (sender, target, message, colorify) {
-          return colorify(`You tell the group, '${message}'`);
+          return colorify(`Вы говорите группе: '${message}'`);
         },
 
         target: function (sender, target, message, colorify) {
-          return colorify(`${sender.name} tells the group, '${message}'`);
+          if (sender.gender === 'male') {
+            return colorify(`${sender.name} говорит группе: '${message}'`);
+          } else if (sender.gender === 'female') {
+            return colorify(`${sender.name} говорит группе: '${message}'`);
+          } else if (sender.gender === 'plural') {
+            return colorify(`${sender.name} говорят группе: '${message}'`);
+          } else {
+            return colorify(`${sender.name} говорит группе: '${message}'`);
+          }
         }
       }
     }),

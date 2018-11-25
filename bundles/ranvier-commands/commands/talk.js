@@ -7,11 +7,11 @@ module.exports = (srcPath) => {
   const Logger = require(srcPath + 'Logger');
 
   return {
-    usage: 'сказать <нпс> <сообщение>',
-    aliases: [ 'сказать' ],
+    usage: 'приказать <нпс> <сообщение>',
+    aliases: [ 'приказать' ],
     command : (state) => (args, player) => {
       if (!args.length) {
-        return B.sayAt(player, 'Что и кому вы хотите сказать?');
+        return B.sayAt(player, 'Что и кому вы хотите приказать?');
       }
 
       if (!player.room) {
@@ -28,11 +28,11 @@ module.exports = (srcPath) => {
       }
 
       if (!npcSearch) {
-        return B.sayAt(player, 'Кому вы хотите сказать?');
+        return B.sayAt(player, 'Кому вы хотите приказать?');
       }
 
       if (!message.length) {
-        return B.sayAt(player, 'что вы хотите сказать?');
+        return B.sayAt(player, 'Что вы хотите приказать?');
       }
 
       const npc = Parser.parseDot(npcSearch, player.room.npcs);
@@ -40,7 +40,7 @@ module.exports = (srcPath) => {
         return B.sayAt(player, "Вы не видите его здесь.");
       }
 
-      B.sayAt(player, `<b><cyan>Вы сказали ${npc.dname}, '${message}'</cyan></b>`);
+      B.sayAt(player, `<b><cyan>Вы приказали ${npc.dname}: '${message}'</cyan></b>`);
       if (!npc.hasBehavior('ranvier-sentient')) {
          if (npc.gender === 'male') {
            return B.sayAt(player, "Он не понимает вас.");

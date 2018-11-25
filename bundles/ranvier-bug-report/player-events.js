@@ -9,11 +9,11 @@ module.exports = (srcPath) => {
 
   function getReportMethod(type) {
     switch (type) {
-      case 'bug':
+      case 'баг':
         return Logger.error;
-      case 'typo':
+      case 'ошибка':
         return Logger.warn;
-      case 'suggestion':
+      case 'предложение':
       default:
         return Logger.verbose;
     }
@@ -27,7 +27,7 @@ module.exports = (srcPath) => {
 
   function getReportHeader(type, description) {
     const now = (new Date()).toISOString();
-    return `REPORT\nType: ${type}\nReported By: ${this.name}\nRoom: ${this.room.title}\nTime: ${now}\nDescription: ${description}\n`;
+    return `REPORT\nType: ${type}\nСообщение от: ${this.name}\nКомната: ${this.room.title}\nВремя: ${now}\nСообщение: ${description}\n`;
   }
 
   function getSpecializedReport(type, description) {
@@ -39,11 +39,11 @@ module.exports = (srcPath) => {
     });
 
     switch (type) {
-      case 'bug':
+      case 'баг':
         return `PlayerData: ${JSON.stringify(this.serialize())} RoomData: ${serializeRoom(room)}`;
-      case 'typo':
+      case 'ошибка':
         return `PlayerInv: ${JSON.stringify(this.inventory.serialize())} RoomData: ${serializeRoom(room)}`;
-      case 'suggestion':
+      case 'предложение':
       default:
         return '';
     }
@@ -58,8 +58,8 @@ module.exports = (srcPath) => {
 
         reportMethod(formattedReport);
         if (Config.get('reportToAdmins')) {
-          const message = `Report from ${this.name}: ${description}. See the server logs for more details.`;
-          const minRole = type === 'bug'
+          const message = `Сообщение от ${this.rname}: ${description}. Просмотрите логи для деталей.`;
+          const minRole = type === 'баг'
             ? PlayerRoles.ADMIN
             : PlayerRoles.BUILDER;
           Broadcast.sayAt(new RoleAudience({ minRole }), message);
