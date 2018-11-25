@@ -10,8 +10,8 @@ module.exports = srcPath => {
 
   return {
     config: {
-      name: 'Judged',
-      description: 'Damage of your next attack is reduced.',
+      name: 'Осуждение',
+      description: 'Урон вашей следующей атаки ослаблен.',
       type: 'skill:judge',
     },
     flags: [Flag.DEBUFF],
@@ -31,11 +31,11 @@ module.exports = srcPath => {
     },
     listeners: {
       effectActivated: function () {
-        Broadcast.sayAt(this.target, '<yellow>The holy judgement weakens you.</yellow>');
+        Broadcast.sayAt(this.target, '<yellow>Святое осуждение ослабляет вас.</yellow>');
       },
 
       effectDeactivated: function () {
-        Broadcast.sayAt(this.target, '<yellow>You feel your strength return.</yellow>');
+        Broadcast.sayAt(this.target, '<yellow>Вы чувствуете подъем сил.</yellow>');
       },
 
       hit: function () {

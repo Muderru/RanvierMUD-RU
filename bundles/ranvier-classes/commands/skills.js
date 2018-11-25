@@ -7,10 +7,10 @@ module.exports = srcPath => {
   const Logger = require(srcPath + 'Logger');
 
   return {
-    aliases: ['abilities', 'spells'],
+    aliases: ['умения', 'заклинания', 'способности'],
     command: state => (args, player) => {
       const say = message => B.sayAt(player, message);
-      say("<b>" + B.center(80, 'Abilities', 'green'));
+      say("<b>" + B.center(80, 'Способности', 'green'));
       say("<b>" + B.line(80, '=', 'green'));
 
       for (const [ level, abilities ] of Object.entries(player.playerClass.abilityTable)) {
@@ -21,19 +21,19 @@ module.exports = srcPath => {
           continue;
         }
 
-        say(`\r\n<bold>Level ${level}</bold>`);
+        say(`\r\n<bold>Уровень ${level}</bold>`);
         say(B.line(50));
 
         let i = 0;
         if (abilities.skills.length) {
-          say('\r\n<bold>Skills</bold>');
+          say('\r\n<bold>Умения</bold>');
         }
 
         for (let skillId of abilities.skills) {
           let skill = state.SkillManager.get(skillId);
 
           if (!skill) {
-            Logger.error(`Invalid skill in ability table: ${player.playerClass.name}:${level}:${skillId}`);
+            Logger.error(`Недопустимое умение в таблице умений: ${player.playerClass.name}:${level}:${skillId}`);
             continue;
           }
 
@@ -49,14 +49,14 @@ module.exports = srcPath => {
         }
 
         if (abilities.spells.length) {
-          say('\r\n<bold>Spells</bold>');
+          say('\r\n<bold>Заклинания</bold>');
         }
 
         for (let spellId of abilities.spells) {
           let spell = state.SpellManager.get(spellId);
 
           if (!spell) {
-            Logger.error(`Invalid spell in ability table: ${player.playerClass.name}:${level}:${spellId}`);
+            Logger.error(`Недопустимое заклинание в таблице умений: ${player.playerClass.name}:${level}:${spellId}`);
             continue;
           }
 

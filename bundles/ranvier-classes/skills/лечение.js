@@ -16,7 +16,7 @@ module.exports = (srcPath) => {
   }
 
   return {
-    name: 'Heal',
+    name: 'Лечение',
     type: SkillType.SPELL,
     requiresTarget: true,
     initiatesCombat: false,
@@ -36,19 +36,19 @@ module.exports = (srcPath) => {
       });
 
       if (target !== player) {
-        Broadcast.sayAt(player, `<b>You call upon to the light to heal ${target.name}'s wounds.</b>`);
-        Broadcast.sayAtExcept(player.room, `<b>${player.name} calls upon to the light to heal ${target.name}'s wounds.</b>`, [target, player]);
-        Broadcast.sayAt(target, `<b>${player.name} calls upon to the light to heal your wounds.</b>`);
+        Broadcast.sayAt(player, `<b>Вы призываете силы Света и лечите раны ${target.rname}.</b>`);
+        Broadcast.sayAtExcept(player.room, `<b>${player.name} призывает силы Света и лечит раны ${target.rname}.</b>`, [target, player]);
+        Broadcast.sayAt(target, `<b>${player.name} призывает силы Света и лечит ваши раны.</b>`);
       } else {
-        Broadcast.sayAt(player, "<b>You call upon to the light to heal your wounds.</b>");
-        Broadcast.sayAtExcept(player.room, `<b>${player.name} calls upon to the light to heal their wounds.</b>`, [player, target]);
+        Broadcast.sayAt(player, "<b>Вы призываете силы Света и лечите ваши раны.</b>");
+        Broadcast.sayAtExcept(player.room, `<b>${player.name} призывает силы Света и лечит свои раны.</b>`, [player, target]);
       }
 
       heal.commit(target);
     },
 
     info: (player) => {
-      return `Call upon the light to heal your target's wounds for ${healPercent}% of your Intellect.`;
+      return `Призвать силы Света и лечить раны на ${healPercent}% от вашего интеллекта.`;
     }
   };
 };

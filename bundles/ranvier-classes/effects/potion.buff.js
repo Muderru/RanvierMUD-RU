@@ -6,7 +6,7 @@ module.exports = srcPath => {
 
   return {
     config: {
-      name: 'Potion Buff',
+      name: 'Усиление зельем',
       type: 'potion.buff',
       refreshes: true,
     },
@@ -27,15 +27,15 @@ module.exports = srcPath => {
     listeners: {
       effectRefreshed: function (newEffect) {
         this.startedAt = Date.now();
-        Broadcast.sayAt(this.target, "You refresh the potion's magic.");
+        Broadcast.sayAt(this.target, "Вы обновили магию зелья.");
       },
 
       effectActivated: function () {
-        Broadcast.sayAt(this.target, "You drink down the potion and feel more powerful!");
+        Broadcast.sayAt(this.target, "Вы выпили зелье и почувствовали себя намного сильнее!");
       },
 
       effectDeactivated: function () {
-        Broadcast.sayAt(this.target, "You feel less powerful.");
+        Broadcast.sayAt(this.target, "Действие зелья спало.");
       }
     }
   };

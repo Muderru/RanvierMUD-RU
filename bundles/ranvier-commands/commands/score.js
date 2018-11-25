@@ -11,7 +11,7 @@ module.exports = (srcPath) => {
     command : (state) => (args, p) => {
       const say = message => B.sayAt(p, message);
 
-      say('<b>' + B.center(60, `${p.name}, level ${p.level} ${p.playerClass.config.name}`, 'green'));
+      say('<b>' + B.center(60, `${p.name}, ${p.playerClass.config.name} уровень ${p.level} `, 'green'));
       say('<b>' + B.line(60, '-', 'green'));
 
       let stats = {
@@ -40,21 +40,21 @@ module.exports = (srcPath) => {
 
       // class resource
       switch (p.playerClass.id) {
-        case 'warrior':
+        case 'воин':
           const energy = {
             current: p.getAttribute('energy'),
             max: p.getMaxAttribute('energy')
           };
           B.at(p, sprintf(' %-9s: %12s', 'Бодрость', `${energy.current}/${energy.max}`));
           break;
-        case 'mage':
+        case 'маг':
           const mana = {
             current: p.getAttribute('mana'),
             max: p.getMaxAttribute('mana')
           };
           B.at(p, sprintf(' %-9s: %12s', 'Мана', `${mana.current}/${mana.max}`));
           break;
-        case 'paladin':
+        case 'паладин':
           const favor = {
             current: p.getAttribute('favor'),
             max: p.getMaxAttribute('favor')

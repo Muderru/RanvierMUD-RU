@@ -8,8 +8,8 @@ module.exports = srcPath => {
 
   return {
     config: {
-      name: 'Cooldown',
-      description: 'Cannot use ability while on cooldown.',
+      name: 'Задержка',
+      description: 'Нельзя использовать умение пока на него действует задержка.',
       unique: false,
       type: 'cooldown',
     },
@@ -18,7 +18,7 @@ module.exports = srcPath => {
     },
     listeners: {
       effectDeactivated: function () {
-        Broadcast.sayAt(this.target, `You may now use <bold>${this.skill.name}</bold> again.`);
+        Broadcast.sayAt(this.target, `Теперь вы снова можете использовать <bold>${this.skill.name}</bold>.`);
       }
     }
   };

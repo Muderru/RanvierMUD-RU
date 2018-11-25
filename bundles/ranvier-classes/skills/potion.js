@@ -9,7 +9,7 @@ module.exports = (srcPath) => {
   const SkillType = require(srcPath + 'SkillType');
 
   return {
-    name: 'Potion',
+    name: 'Зелье',
     type: SkillType.SPELL,
     requiresTarget: true,
     targetSelf: true,
@@ -24,12 +24,12 @@ module.exports = (srcPath) => {
         source: this
       });
 
-      Broadcast.sayAt(player, `<bold>You drink the potion and a warm feeling fills your body.</bold>`);
+      Broadcast.sayAt(player, `<bold>Вы выпиваете зелье и теплое чувство заполняет ваше тело.</bold>`);
       heal.commit(player);
     },
 
     info: function (player) {
-      return `Restores <b>${this.options.restores}%</b> of your total ${this.options.stat}.`;
+      return `Восстанавливает <b>${this.options.restores}%</b> от вашего ${this.options.stat}.`;
     }
   };
 };

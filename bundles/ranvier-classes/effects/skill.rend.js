@@ -10,7 +10,7 @@ module.exports = srcPath => {
 
   return {
     config: {
-      name: 'Rend',
+      name: 'Рваная рана',
       type: 'skill:rend',
       maxStacks: 3,
     },
@@ -22,11 +22,11 @@ module.exports = srcPath => {
       },
 
       effectActivated: function () {
-        Broadcast.sayAt(this.target, "<bold><red>You've suffered a deep wound, it's bleeding profusely</red></bold>");
+        Broadcast.sayAt(this.target, "<bold><red>Вы получили рваную рану, которая сильно кровоточит.</red></bold>");
       },
 
       effectDeactivated: function () {
-        Broadcast.sayAt(this.target, "Your wound has stopped bleeding.");
+        Broadcast.sayAt(this.target, "Ваша рваная рана перестала кровоточить.");
       },
 
       updateTick: function () {

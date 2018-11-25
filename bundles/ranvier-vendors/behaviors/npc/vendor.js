@@ -9,13 +9,13 @@ module.exports = (srcPath) => {
       playerEnter: state => function (config, player) {
         if (config.enterMessage) {
           B.sayAt(player, '');
-          state.ChannelManager.get('say').send(state, this, config.enterMessage);
+          state.ChannelManager.get('говорить').send(state, this, config.enterMessage);
         }
       },
 
       playerLeave: state => function (config, player) {
         if (config.leaveMessage) {
-          state.ChannelManager.get('say').send(state, this, config.leaveMessage);
+          state.ChannelManager.get('говорить').send(state, this, config.leaveMessage);
         }
       },
 

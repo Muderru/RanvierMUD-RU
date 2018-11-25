@@ -9,14 +9,14 @@
  */
 module.exports = srcPath => {
   return {
-    name: 'Warrior',
-    description: 'Warriors relish being face-to-face with their enemy. Whether it be wielding axes, maces, swords, or a nearby log, Warriors focus on dealing strong physical damage to their opponent. What they lack in the raw magical damage of a Mage, or the healing prowess of a Cleric, Warriors make up for in their tenacity. Those choosing the more defensive path of the shield can outlast otherwise deadly attacks.',
+    name: 'Воин',
+    description: 'Воины непревзойденные мастера в владении оружием. Топоры, мечи или булавы, им все равно чем крушить врага. Действуя немного прямолинейно, они полагатся в первую очередь на свою силу и упорство.',
 
     abilityTable: {
-      3: { skills: ['rend'] },
-      5: { skills: ['lunge'] },
-      7: { skills: ['shieldblock'] },
-     10: { skills: ['secondwind'] },
+      3: { skills: ['рваная_рана'] },
+      5: { skills: ['выпад'] },
+      7: { skills: ['блокирование_щитом'] },
+     10: { skills: ['второе_дыхание'] },
     },
 
     setupPlayer: player => {

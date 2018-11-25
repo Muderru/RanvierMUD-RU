@@ -10,7 +10,7 @@ module.exports = srcPath => {
 
   return {
     config: {
-      name: 'Second Wind',
+      name: 'Второе дыхание',
       type: 'skill:secondwind'
     },
     flags: [Flag.BUFF],
@@ -28,7 +28,7 @@ module.exports = srcPath => {
           return;
         }
 
-        Broadcast.sayAt(this.target, "<bold><yellow>You catch a second wind!</bold></yellow>");
+        Broadcast.sayAt(this.target, "<bold><yellow>Вы почувствовали второе дыхание!</bold></yellow>");
         const heal = new Heal({
           amount: Math.floor(this.target.getMaxAttribute('energy') * (this.state.restorePercent / 100)),
           attacker: this.target,

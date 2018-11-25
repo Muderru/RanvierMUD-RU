@@ -18,7 +18,7 @@ module.exports = (srcPath) => {
           ],
           outputFn: message => {
             message = message.replace(/%player%/, player.name);
-            state.ChannelManager.get('say').send(state, this, message);
+            state.ChannelManager.get('говорить').send(state, this, message);
           }
         });
         this.addEffect(speak);

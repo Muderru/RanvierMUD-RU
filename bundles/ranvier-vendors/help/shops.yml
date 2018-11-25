@@ -1,16 +1,16 @@
 ---
-command: shop
+command: магазин
 body: |
-  To use the shop commands you have to be in a shop.
+  Используйте следующие команды магазина:
 
-  list            - List items the vendor has for sale.
-  list <search>   - View details of an item for sale, e.g., '<b>list 2.sword</b>'
-  buy <item>      - Purchase an item for sale.
-  appraise <item> - Ask the vendor how much an item is worth.
-  sell <item>     - Sell an item.
+  список          - Список вещей торговца для продажи.
+  список <поиск>  - Смотрите дополнительную информацию о вещи, например, '<b>список 2.меч</b>'
+  купить <вещь>   - Покупка выбранной вещи.
+  оценить <вещь>  - Запрашивает предложение торговца по вашей вещи.
+  продать <вещь>  - Продает вещь.
 keywords:
-  - shopping
-  - shops
-  - vendors
-  - sell
-  - buy
+  - торговля
+  - магазины
+  - торговцы
+  - продать
+  - купить
