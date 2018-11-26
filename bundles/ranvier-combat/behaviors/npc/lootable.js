@@ -18,11 +18,17 @@ module.exports = srcPath => {
         );
 
         const corpse = new Item(this.area, {
-          id: 'corpse',
-          name: `Corpse of ${this.name}`,
-          roomDesc: `Corpse of ${this.name}`,
-          description: `The rotting corpse of ${this.name}`,
-          keywords: this.keywords.concat(['corpse']),
+          id: 'труп',
+          name: `труп ${this.rname}`,
+          rname: `трупа ${this.rname}`,
+          dname: `трупу ${this.rname}`,
+          vname: `труп ${this.rname}`,
+          tname: `трупом ${this.rname}`,
+          pname: `трупе ${this.rname}`,
+          gender: `male`,
+          roomDesc: `Труп ${this.rname}`,
+          description: `Гниющий труп ${this.rname}.`,
+          keywords: this.keywords.concat(['труп']),
           type: 'CONTAINER',
           metadata: {
             noPickup: true,

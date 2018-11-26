@@ -1,9 +1,9 @@
 ---
-command: flee
+command: бежать
 body: |
-  Run away from a fight. You can optionally specify a direction to run, if you don't a random direction will be picked for you.
+  Позволяет вам сбежать из боя. Вы можете указать направление, в каком вы хотите сбежать. Если не укажете, то будет выбрано случайное направление.
 related:
-  - kill
+  - убить
 keywords:
-- flee
-- run
+- бежать
+- бой

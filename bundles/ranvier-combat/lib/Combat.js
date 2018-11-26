@@ -159,19 +159,19 @@ class Combat {
     }
 
     if (target === attacker) {
-      throw new CombatErrors.CombatSelfError("You smack yourself in the face. Ouch!");
+      throw new CombatErrors.CombatSelfError("Вы ударили самого себя по лицу. Взбодрило!");
     }
 
     if (!target.hasAttribute('health')) {
-      throw new CombatErrors.CombatInvalidTargetError("You can't attack that target");
+      throw new CombatErrors.CombatInvalidTargetError("Вы не можете атаковать эту цель.");
     }
 
     if (!target.isNpc && !target.getMeta('pvp')) {
-      throw new CombatErrors.CombatNonPvpError(`${target.name} has not opted into PvP.`, target);
+      throw new CombatErrors.CombatNonPvpError(`${target.name} не в режиме ПвП.`, target);
     }
 
     if (target.pacifist) {
-      throw new CombatErrors.CombatPacifistError(`${target.name} is a pacifist and will not fight you.`, target);
+      throw new CombatErrors.CombatPacifistError(`${target.name} - пацифист и не будет сражаться с вами.`, target);
     }
 
     return target;

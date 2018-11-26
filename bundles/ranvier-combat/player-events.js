@@ -21,7 +21,7 @@ module.exports = (srcPath) => {
           hadActions = Combat.updateRound(state, this);
         } catch (e) {
           if (e instanceof CombatErrors.CombatInvalidTargetError) {
-            B.sayAt(this, "You can't attack that target.");
+            B.sayAt(this, "Вы не можете атаковать эту цель.");
           } else {
             throw e;
           }
@@ -53,7 +53,7 @@ module.exports = (srcPath) => {
           this.setMeta(key, (this.getMeta(key) || 0) + amount);
           this.save();
 
-          B.sayAt(this, `<green>You receive currency: <b><white>[${friendlyName}]</white></b> x${amount}.`);
+          B.sayAt(this, `<green>Вы получили деньги: <b><white>[${friendlyName}]</white></b> x${amount}.`);
       },
 
       /**
@@ -68,15 +68,23 @@ module.exports = (srcPath) => {
 
         let buf = '';
         if (damage.source) {
-          buf = `Your <b>${damage.source.name}</b> hit`;
+            if (damage.source.gender === 'male') {
+              buf = `Ваш <b>${damage.source.name}</b> ударил`;
+            } else if (damage.source.gender === 'female') {
+              buf = `Ваша <b>${damage.source.name}</b> ударила`;
+            } else if (damage.source.gender === 'plural') {
+              buf = `Ваши <b>${damage.source.name}</b> ударили`;
+            } else {
+              buf = `Ваше <b>${damage.source.name}</b> ударило`;
+            }
         } else {
-          buf = "You hit";
+          buf = "Вы ударили";
         }
 
-        buf += ` <b>${target.name}</b> for <b>${damage.finalAmount}</b> damage.`;
+        buf += ` <b>${target.vname}</b> на <b>${damage.finalAmount}</b> урона.`;
 
         if (damage.critical) {
-          buf += ' <red><b>(Critical)</b></red>';
+          buf += ' <red><b>(Критический удар)</b></red>';
         }
 
         B.sayAt(this, buf);
@@ -97,12 +105,28 @@ module.exports = (srcPath) => {
 
           let buf = '';
           if (damage.source) {
-            buf = `${this.name} <b>${damage.source.name}</b> hit`;
+            if (damage.source.gender === 'male') {
+              buf = `<b>${damage.source.name}</b> ${this.rname} ударил`;
+            } else if (damage.source.gender === 'female') {
+              buf = `<b>${damage.source.name}</b> ${this.rname} ударила`;
+            } else if (damage.source.gender === 'plural') {
+              buf = `<b>${damage.source.name}</b> ${this.rname} ударили`;
+            } else {
+              buf = `<b>${damage.source.name}</b> ${this.rname} ударило`;
+            }              
           } else {
-            buf = `${this.name} hit`;
+            if (this.gender === 'male') {
+              buf = `${this.name} ударил`;
+            } else if (this.gender === 'female') {
+              buf = `${this.name} ударила`;
+            } else if (this.gender === 'plural') {
+              buf = `${this.name} ударили`;
+            } else {
+              buf = `${this.name} ударило`;
+            }              
           }
 
-          buf += ` <b>${target.name}</b> for <b>${damage.finalAmount}</b> damage.`;
+          buf += ` <b>${target.vname}</b> на <b>${damage.finalAmount}</b> урона.`;
           B.sayAt(member, buf);
         }
       },
@@ -119,12 +143,20 @@ module.exports = (srcPath) => {
         if (target !== this) {
           let buf = '';
           if (heal.source) {
-            buf = `Your <b>${heal.source.name}</b> healed`;
+            if (heal.source.gender === 'male') {
+              buf = `Ваш <b>${heal.source.name}</b> вылечил`;
+            } else if (heal.source.gender === 'female') {
+              buf = `Ваша <b>${heal.source.name}</b> вылечила`;
+            } else if (heal.source.gender === 'plural') {
+              buf = `Ваши <b>${heal.source.name}</b> вылечили`;
+            } else {
+              buf = `Ваше <b>${heal.source.name}</b> вылечило`;
+            }              
           } else {
-            buf = "You heal";
+            buf = "Вы вылечили";
           }
 
-          buf += `<b> ${target.name}</b> for <b><green>${heal.finalAmount}</green></b> ${heal.attribute}.`;
+          buf += `<b> ${target.vname}</b> <b><green>${heal.finalAmount}</green></b> ${heal.attribute}.`;
           B.sayAt(this, buf);
         }
 
@@ -140,13 +172,21 @@ module.exports = (srcPath) => {
 
           let buf = '';
           if (heal.source) {
-            buf = `${this.name} <b>${heal.source.name}</b> healed`;
+            if (heal.source.gender === 'male') {
+              buf = `<b>${heal.source.name}</b> ${this.rname} вылечил`;
+            } else if (heal.source.gender === 'female') {
+              buf = `<b>${heal.source.name}</b> ${this.rname} вылечила`;
+            } else if (heal.source.gender === 'plural') {
+              buf = `<b>${heal.source.name}</b> ${this.rname} вылечила`;
+            } else {
+              buf = `<b>${heal.source.name}</b> ${this.rname} вылечило`;
+            }              
           } else {
-            buf = `${this.name} healed`;
+            buf = `${this.name} вылечил`;
           }
 
-          buf += ` <b>${target.name}</b>`;
-          buf += ` for <b><green>${heal.finalAmount}</green></b> ${heal.attribute}.`;
+          buf += ` <b>${target.vname}</b>`;
+          buf += ` <b><green>${heal.finalAmount}</green></b> ${heal.attribute}.`;
           B.sayAt(member, buf);
         }
       },
@@ -161,20 +201,24 @@ module.exports = (srcPath) => {
         }
 
         let buf = '';
-        if (damage.attacker) {
-          buf = `<b>${damage.attacker.name}</b>`;
-        }
+        if (damage.attacker) { 
+              if (damage.attacker.gender === 'male') {
+                buf = `${damage.attacker.name} ударил`;
+              } else if (damage.attacker.gender === 'female') {
+                buf = `${damage.attacker.name} ударила`;
+              } else if (damage.attacker.gender === 'plural') {
+                buf = `${damage.attacker.name} ударили`;
+              } else {
+                buf = `${damage.attacker.name} ударило`;
+              }            
+           } else if (!damage.attacker) {
+             buf = "Что-то ударило";
+           }
 
-        if (damage.source) {
-          buf += (damage.attacker ? "'s " : " ") + `<b>${damage.source.name}</b>`;
-        } else if (!damage.attacker) {
-          buf += "Something";
-        }
-
-        buf += ` hit <b>You</b> for <b><red>${damage.finalAmount}</red></b> damage.`;
+        buf += ` <b>Вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
 
         if (damage.critical) {
-          buf += ' <red><b>(Critical)</b></red>';
+          buf += ' <red><b>(Критический удар)</b></red>';
         }
 
         B.sayAt(this, buf);
@@ -190,17 +234,21 @@ module.exports = (srcPath) => {
           }
 
           let buf = '';
-          if (damage.attacker) {
-            buf = `<b>${damage.attacker.name}</b>`;
-          }
+        if (damage.attacker) {
+              if (damage.attacker.gender === 'male') {
+                buf = `${damage.attacker.name} ударил`;
+              } else if (damage.attacker.gender === 'female') {
+                buf = `${damage.attacker.name} ударила`;
+              } else if (damage.attacker.gender === 'plural') {
+                buf = `${damage.attacker.name} ударили`;
+              } else {
+                buf = `${damage.attacker.name} ударило`;
+              }            
+           } else if (!damage.attacker) {
+             buf = "Что-то ударило";
+           }
 
-          if (damage.source) {
-            buf += (damage.attacker ? "'s " : ' ') + `<b>${damage.source.name}</b>`;
-          } else if (!damage.attacker) {
-            buf += "Something";
-          }
-
-          buf += ` hit <b>${this.name}</b> for <b><red>${damage.finalAmount}</red></b> damage`;
+          buf += ` <b>${this.vname}</b> на <b><red>${damage.finalAmount}</red></b> урона`;
           B.sayAt(member, buf);
         }
       },
@@ -219,16 +267,16 @@ module.exports = (srcPath) => {
         }
 
         if (heal.source) {
-          attacker = attacker ? attacker + "'s " : '';
+          attacker = " " + `${attacker.rname}`;
           source = `<b>${heal.source.name}</b>`;
         } else if (!heal.attacker) {
-          source = "Something";
+          source = "Что-то";
         }
 
         if (heal.attribute === 'health') {
-          buf = `${attacker}${source} heals you for <b><red>${heal.finalAmount}</red></b>.`;
+          buf = `${source}${attacker} вылечило вам <b><red>${heal.finalAmount}</red></b>.`;
         } else {
-          buf = `${attacker}${source} restores <b>${heal.finalAmount}</b> ${heal.attribute}.`;
+          buf = `${source}${attacker} восстановило вам <b>${heal.finalAmount}</b> ${heal.attribute}.`;
         }
         B.sayAt(this, buf);
 
@@ -242,7 +290,7 @@ module.exports = (srcPath) => {
             continue;
           }
 
-          let buf = `${attacker}${source} heals ${this.name} for <b><red>${heal.finalAmount}</red></b>.`;
+          let buf = `${source}${attacker} вылечило ${this.dname} <b><red>${heal.finalAmount}</red></b>.`;
           B.sayAt(member, buf);
         }
       },
@@ -254,14 +302,36 @@ module.exports = (srcPath) => {
       killed: state => function (killer) {
         this.removePrompt('combat');
 
-        const othersDeathMessage = killer ?
-          `<b><red>${this.name} collapses to the ground, dead at the hands of ${killer.name}.</b></red>` :
-          `<b><red>${this.name} collapses to the ground, dead</b></red>`;
+        if (this.gender === 'male') {
+          const othersDeathMessage = killer ?
+            `<b><red>${this.name} повалился на землю, мертвый от рук ${killer.rname}.</b></red>` :
+            `<b><red>${this.name} повалился на землю мертвый</b></red>`;
+        } else if (this.gender === 'female') {
+          const othersDeathMessage = killer ?
+            `<b><red>${this.name} повалилась на землю, мертвая от рук ${killer.rname}.</b></red>` :
+            `<b><red>${this.name} повалилась на землю мертвая</b></red>`;
+        } else if (this.gender === 'plural') {
+          const othersDeathMessage = killer ?
+            `<b><red>${this.name} повалились на землю, мертвые от рук ${killer.rname}.</b></red>` :
+            `<b><red>${this.name} повалились на землю мертвые</b></red>`;
+        } else {
+          const othersDeathMessage = killer ?
+            `<b><red>${this.name} повалилось на землю, мертвое от рук ${killer.rname}.</b></red>` :
+            `<b><red>${this.name} повалилось на землю мертвое</b></red>`;
+        }        
 
         B.sayAtExcept(this.room, othersDeathMessage, (killer ? [killer, this] : this));
 
         if (this.party) {
-          B.sayAt(this.party, `<b><green>${this.name} was killed!</green></b>`);
+          if (this.gender === 'male') {
+            B.sayAt(this.party, `<b><green>${this.name} был убит!</green></b>`);
+          } else if (this.gender === 'female') {
+            B.sayAt(this.party, `<b><green>${this.name} была убита!</green></b>`);
+          } else if (this.gender === 'plural') {
+            B.sayAt(this.party, `<b><green>${this.name} были убиты!</green></b>`);
+          } else {
+            B.sayAt(this.party, `<b><green>${this.name} было убито!</green></b>`);
+          }            
         }
 
         this.setAttributeToMax('health');
@@ -274,15 +344,15 @@ module.exports = (srcPath) => {
         this.moveTo(home, _ => {
           state.CommandManager.get('look').execute(null, this);
 
-          B.sayAt(this, '<b><red>Whoops, that sucked!</red></b>');
+          B.sayAt(this, '<b><red>Ой, вот незадача!</red></b>');
           if (killer && killer !== this) {
-            B.sayAt(this, `You were killed by ${killer.name}.`);
+            B.sayAt(this, `Вы были убиты ${killer.tname}.`);
           }
           // player loses 20% exp gained this level on death
           const lostExp = Math.floor(this.experience * 0.2);
           this.experience -= lostExp;
           this.save();
-          B.sayAt(this, `<red>You lose <b>${lostExp}</b> experience!</red>`);
+          B.sayAt(this, `<red>Вы потеряли <b>${lostExp}</b> опыта!</red>`);
 
           B.prompt(this);
         });
@@ -306,7 +376,7 @@ module.exports = (srcPath) => {
         }
 
         if (target && !this.isNpc) {
-          B.sayAt(this, `<b><red>You killed ${target.name}!</red></b>`);
+          B.sayAt(this, `<b><red>Вы убили ${target.vname}!</red></b>`);
         }
 
         this.emit('experience', xp);
@@ -320,7 +390,7 @@ module.exports = (srcPath) => {
     }
 
     // Set up some constants for formatting the health bars
-    const playerName = "You";
+    const playerName = "Вы";
     const targetNameLengths = [...promptee.combatants].map(t => t.name.length);
     const nameWidth = Math.max(playerName.length, ...targetNameLengths);
     const progWidth = 60 - (nameWidth + ':  ').length;

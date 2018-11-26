@@ -6,14 +6,15 @@ module.exports = (srcPath) => {
   const Parser = require(srcPath + 'CommandParser').CommandParser;
 
   return {
+    aliases: ['пвп', 'пк'],
     command : (state) => (args, player) => {
       const previousPvpSetting = player.getMeta('pvp') || false;
       const newPvpSetting = !previousPvpSetting;
       player.setMeta('pvp', newPvpSetting);
 
       const message = newPvpSetting ?
-        'You are now able to enter into player-on-player duels.' :
-        'You are now a pacifist and cannot enter player-on-player duels.';
+        'Теперь вы можете дуэлиться с другими игроками.' :
+        'Теперь вы пацифист и не можете дуэлиться с другими игроками.';
       Broadcast.sayAt(player, message);
     }
   };

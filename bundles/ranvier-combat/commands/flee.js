@@ -6,10 +6,11 @@ module.exports = srcPath => {
   const say = Broadcast.sayAt;
 
   return {
-    usage: 'flee [direction]',
+    usage: 'бежать [направление]',
+    aliases: ['бежать', 'убежать'],
     command: state => (direction, player) => {
       if (!player.isInCombat()) {
-        return say(player, "You jump at the sight of your own shadow.");
+        return say(player, "Вы вздрагиваете от вида собственной тени.");
       }
 
       let possibleRooms = {};
@@ -24,12 +25,12 @@ module.exports = srcPath => {
         // find exits from coordinates
         const area = player.room.area;
         const directions = {
-          north: [0, 1, 0],
-          south: [0, -1, 0],
-          east: [1, 0, 0],
-          west: [-1, 0, 0],
-          up: [0, 0, 1],
-          down: [0, 0, -1],
+          север: [0, 1, 0],
+          юг: [0, -1, 0],
+          восток: [1, 0, 0],
+          запад: [-1, 0, 0],
+          вверх: [0, 0, 1],
+          вниз: [0, 0, -1],
         };
 
         for (const [dir, diff] of Object.entries(directions)) {
@@ -53,18 +54,18 @@ module.exports = srcPath => {
       const randomRoom = state.RoomManager.getRoom(roomId);
 
       if (!randomRoom) {
-        say(player, "You can't find anywhere to run!");
+        say(player, "Вы не знаете куда бежать!");
         return;
       }
 
 
       const door = player.room.getDoor(randomRoom) || randomRoom.getDoor(player.room);
       if (randomRoom && door && (door.locked || door.closed)) {
-        say(player, "In your panic you run into a closed door!");
+        say(player, "Вы с разбега ударились в закрытую дверь!");
         return;
       }
 
-      say(player, "You cowardly flee from the battle!");
+      say(player, "С гордо поднятой головой вы сбегаете из битвы!");
       player.removeFromCombat();
       state.CommandManager.get('move').execute(direction, player);
     }

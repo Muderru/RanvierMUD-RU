@@ -1,10 +1,10 @@
 ---
-command: kill
+command: убить
 body: |
-  Initiate combat against a target
+  Инициирует сражение с указанной целью.
 related:
-  - flee
+  - бежать
 keywords:
-  - attack
-  - kill
-  - combat
+  - убить
+  - атаковать
+  - бой

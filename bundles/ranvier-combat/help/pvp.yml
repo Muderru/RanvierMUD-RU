@@ -1,11 +1,11 @@
 ---
-command: pvp
+command: пвп
 body: |
-  Toggle your preference for engaging in Player versus Player combat.
+  Включает и выключает режим дуэлей с другими игроками.
 related:
-  - kill
-  - flee
+  - убить
+  - бежать
 keywords:
-  - pvp
-  - player
-  - versus
+  - пвп
+  - игрок
+  - пк

@@ -55,7 +55,7 @@ module.exports = (srcPath) => {
 
         // level up, currently wraps experience if they gain more than needed for multiple levels
         if (this.experience + amount > totalTnl) {
-          Broadcast.sayAt(this, '                                   <bold><blue>!Новй уровень!</blue></bold>');
+          Broadcast.sayAt(this, '                                   <bold><blue>!Новый уровень!</blue></bold>');
           Broadcast.sayAt(this, Broadcast.progress(80, 100, "blue"));
 
           let nextTnl = totalTnl;

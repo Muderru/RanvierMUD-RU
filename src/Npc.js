@@ -35,6 +35,12 @@ class Npc extends Character {
     this.pacifist = data.pacifist || false;
     this.quests = data.quests || [];
     this.uuid = data.uuid || uuid();
+    this.rname = data.rname;
+    this.dname = data.dname;
+    this.vname = data.vname;
+    this.tname = data.tname;
+    this.pname = data.pname;
+    this.gender = data.gender;
   }
 
 
