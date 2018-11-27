@@ -82,12 +82,12 @@ module.exports = (srcPath) => {
       */
       function handleMultiplaying(selectedChar) {
         if (!canMultiplay) {
-          const kickIfMultiplaying = kickIfLoggedIn.bind(null, 'Replaced. No multiplaying allowed.');
+          const kickIfMultiplaying = kickIfLoggedIn.bind(null, 'Персонаж заменен. Мультинг не разрешен.');
           const checkAllCharacters = [...characters].map(kickIfMultiplaying);
           return Promise.all(checkAllCharacters);
         } else if (selectedChar) {
           Logger.log("Multiplaying is allowed...");
-          return kickIfLoggedIn("Replaced by a new session.", selectedChar);
+          return kickIfLoggedIn("Заменено новым сеансом.", selectedChar);
         }
       }
 
@@ -119,7 +119,7 @@ module.exports = (srcPath) => {
 
       if (characters.length) {
         options.push({
-          display: 'Delete a Character',
+          display: 'Удалить персонажа',
           onSelect: () => {
             socket.emit('delete-character', socket, args);
           },
@@ -127,34 +127,34 @@ module.exports = (srcPath) => {
       }
 
       options.push({
-        display: 'Delete This Account',
+        display: 'Удалить аккаунт',
         onSelect: () => {
-          say('<bold>By deleting this account, all the characters will be also deleted.</bold>')
-          write(`<bold>Are you sure you want to delete this account? </bold> <cyan>[Y/n]</cyan> `);
+          say('<bold>Удалив аккаунт, вы также удалите всех персонажей на нем.</bold>')
+          write(`<bold>Вы уверены, что хотите удалить этот аккаунт? </bold> <cyan>[д/н]</cyan> `);
             socket.once('data', confirmation => {
               say('');
               confirmation = confirmation.toString().trim().toLowerCase();
 
-              if (!/[yn]/.test(confirmation)) {
-                say('<b>Invalid Option</b>')
+              if (!/[дн]/.test(confirmation)) {
+                say('<b>Недопустимая опция</b>')
                 return socket.emit('choose-character', socket, args);
               }
 
-              if (confirmation === 'n') {
-                say('No one was deleted...');
+              if (confirmation === 'н') {
+                say('Никого не надо удалять...');
                 return socket.emit('choose-character', socket, args);
               }
 
               say(`Deleting account <b>${account.username}</b>`);
               account.deleteAccount();
-              say('Account deleted, it was a pleasure doing business with you.');
+              say('Аккаунт удален, спасибо за игру.');
               socket.end();
             });
         },
       });
 
       options.push({
-        display: 'Quit',
+        display: 'Выход',
         onSelect: () => socket.end(),
       });
 
