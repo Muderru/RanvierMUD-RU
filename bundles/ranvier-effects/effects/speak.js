@@ -8,7 +8,7 @@ module.exports = srcPath => {
 
   return {
     config: {
-      name: 'Speaking',
+      name: 'Речь',
       type: 'speaking',
       tickInterval: 3,
       persists: false

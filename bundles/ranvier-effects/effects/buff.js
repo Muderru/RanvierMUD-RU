@@ -6,8 +6,8 @@ module.exports = srcPath => {
 
   return {
     config: {
-      name: 'Buff Strength',
-      description: "You feel stronger!",
+      name: 'Усиление силы',
+      description: "Вы чувствуете себя сильнее!",
       duration: 30 * 1000,
       type: 'buff.strength',
     },
@@ -24,11 +24,11 @@ module.exports = srcPath => {
     },
     listeners: {
       effectActivated: function () {
-        Broadcast.sayAt(this.target, "Strength courses through your veins!");
+        Broadcast.sayAt(this.target, "Ваши мышцы увеличились в размерах!");
       },
 
       effectDeactivated: function () {
-        Broadcast.sayAt(this.target, "You feel weaker.");
+        Broadcast.sayAt(this.target, "Вы чувствуете себя слабее.");
       }
     }
   };

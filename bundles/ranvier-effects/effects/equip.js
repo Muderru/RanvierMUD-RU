@@ -9,7 +9,7 @@ module.exports = srcPath => {
 
   return {
     config: {
-      name: 'Equip',
+      name: 'Экипировка',
       description: '',
       type: 'equip',
       hidden: true,

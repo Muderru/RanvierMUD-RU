@@ -8,8 +8,8 @@ module.exports = srcPath => {
 
   return {
     config: {
-      name: 'Regenerate',
-      description: "You are regenerating over time.",
+      name: 'Регенерация',
+      description: "Ваши раны затягиваются быстрее.",
       type: 'regen',
       tickInterval: 3
     },

@@ -6,16 +6,16 @@ module.exports = (srcPath) => {
   const Flag = require(srcPath + 'EffectFlag');
 
   return {
-    aliases: [ "affects" ],
+    aliases: [ 'аффекты', 'эффекты' ],
     command : (state) => (args, player) => {
-      B.sayAt(player, "Current Effects:");
+      B.sayAt(player, "Текущие аффекты:");
 
       const effects = player.effects.entries().filter(effect => {
         return !effect.config.hidden;
       });
 
       if (!effects.length) {
-        return B.sayAt(player, "  None.");
+        return B.sayAt(player, "  Нет.");
       }
 
       for (const effect of effects) {
@@ -33,9 +33,9 @@ module.exports = (srcPath) => {
         B.at(player, ':');
 
         if (effect.duration === Infinity) {
-          B.sayAt(player, "Permanent");
+          B.sayAt(player, "Постоянно");
         } else {
-          B.sayAt(player, ` ${humanize(effect.remaining)} remaining`);
+          B.sayAt(player, ` ${humanize(effect.remaining)} осталось`);
         }
         B.sayAt(player, "\t" + effect.description);
       }
