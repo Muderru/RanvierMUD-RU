@@ -9,7 +9,7 @@ module.exports = srcPath => {
   return class KillGoal extends QuestGoal {
     constructor(quest, config, player) {
       config = Object.assign({
-        title: 'Kill Enemy',
+        title: 'Убить противника',
         npc: null,
         count: 1
       }, config);

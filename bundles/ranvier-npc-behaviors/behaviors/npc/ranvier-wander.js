@@ -49,12 +49,12 @@ module.exports = srcPath => {
           // find exits from coordinates
           const area = this.room.area;
           const directions = {
-            north: [0, 1, 0],
-            south: [0, -1, 0],
-            east: [1, 0, 0],
-            west: [-1, 0, 0],
-            up: [0, 0, 1],
-            down: [0, 0, -1],
+            север: [0, 1, 0],
+            юг: [0, -1, 0],
+            восток: [1, 0, 0],
+            запад: [-1, 0, 0],
+            вверх: [0, 0, 1],
+            вниз: [0, 0, -1],
           };
 
           for (const [dir, diff] of Object.entries(directions)) {
@@ -85,7 +85,15 @@ module.exports = srcPath => {
         }
 
         Logger.verbose(`NPC [${this.uuid}] wandering from ${this.room.entityReference} to ${randomRoom.entityReference}.`);
-        Broadcast.sayAt(this.room, `${this.name} wanders ${direction}.`);
+        if (this.gender === 'male') {
+          Broadcast.sayAt(this.room, `${this.name} убежал на ${direction}.`);
+        } else if (this.gender === 'female') {
+          Broadcast.sayAt(this.room, `${this.name} убежала на ${direction}.`);
+        } else if (this.gender === 'plural') {
+          Broadcast.sayAt(this.room, `${this.name} убежали на ${direction}.`);
+        } else {
+          Broadcast.sayAt(this.room, `${this.name} убежало на ${direction}.`);
+        }
         this.moveTo(randomRoom);
       }
     }

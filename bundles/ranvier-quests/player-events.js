@@ -6,7 +6,7 @@ module.exports = (srcPath) => {
   return  {
     listeners: {
       questStart: state => function (quest) {
-        B.sayAt(this, `\r\n<bold><yellow>Quest Started: ${quest.config.title}!</yellow></bold>`);
+        B.sayAt(this, `\r\n<bold><yellow>Задание начато: ${quest.config.title}!</yellow></bold>`);
         if (quest.config.description) {
           B.sayAt(this, B.line(80));
           B.sayAt(this, `<bold><yellow>${quest.config.description}</yellow></bold>`, 80);
@@ -14,7 +14,7 @@ module.exports = (srcPath) => {
 
         if (quest.config.rewards.length) {
           B.sayAt(this);
-          B.sayAt(this, '<b><yellow>' + B.center(80, 'Rewards') + '</yellow></b>');
+          B.sayAt(this, '<b><yellow>' + B.center(80, 'Награды') + '</yellow></b>');
           B.sayAt(this, '<b><yellow>' + B.center(80, '-------') + '</yellow></b>');
 
           for (const reward of quest.config.rewards) {
@@ -31,11 +31,11 @@ module.exports = (srcPath) => {
       },
 
       questTurnInReady: state => function (quest) {
-        B.sayAt(this, `<bold><yellow>${quest.config.title} ready to turn in!</yellow></bold>`);
+        B.sayAt(this, `<bold><yellow>${quest.config.title} готово к сдаче!</yellow></bold>`);
       },
 
       questComplete: state => function (quest) {
-        B.sayAt(this, `<bold><yellow>Quest Complete: ${quest.config.title}!</yellow></bold>`);
+        B.sayAt(this, `<bold><yellow>Задание завершено: ${quest.config.title}!</yellow></bold>`);
 
         if (quest.config.completionMessage) {
           B.sayAt(this, B.line(80));

@@ -9,7 +9,7 @@ module.exports = srcPath => {
   return class EquipGoal extends QuestGoal {
     constructor(quest, config, player) {
       config = Object.assign({
-        title: 'Equip Item',
+        title: 'Экипироваться предметом',
         slot: null,
       }, config);
 
@@ -25,7 +25,7 @@ module.exports = srcPath => {
 
     getProgress() {
       const percent = this.state.equipped ? 100 : 0;
-      const display = `${this.config.title}: ` + (!this.state.equipped ? 'Not ' : '') + 'Equipped';
+      const display = `${this.config.title}: ` + (!this.state.equipped ? 'не ' : '') + 'экипировано';
       return { percent, display };
     }
 

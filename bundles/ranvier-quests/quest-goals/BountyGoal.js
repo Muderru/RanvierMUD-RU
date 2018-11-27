@@ -10,7 +10,7 @@ module.exports = srcPath => {
   return class BountyGoal extends QuestGoal {
     constructor(quest, config, player) {
       config = Object.assign({
-        title: 'Locate NPC',
+        title: 'Обнаружить НПС',
         npc: null, // NPC ID to capture
         home: null // Area ID to return to
       }, config);
@@ -37,7 +37,7 @@ module.exports = srcPath => {
         percent += 50;
       }
 
-      const display = this.state.found ? 'Complete' : 'Not Complete';
+      const display = this.state.found ? 'завершено' : 'не завершено';
       return { percent, display };
     }
 

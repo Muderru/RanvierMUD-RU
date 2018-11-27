@@ -1,7 +1,7 @@
 ---
-command: quest
+command: задания
 body: |
-  quest log               Show current quests
-  quest list npc          List quests for a given NPC
-  quest complete number   Complete the given quest
-  quest start npc number  Start the given quest by the given NPC
+  задания журнал            Показывает текущие задания
+  задания список нпс        Список заданий данного НПС
+  задания завершить номер   Завершить указанное задание
+  задания начать нпс номер  Начать выполнять указанное задание у данного НПС
