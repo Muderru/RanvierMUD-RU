@@ -38,7 +38,7 @@
         leveledTo: QUEST
     - type: CurrencyReward
       config:
-        currency: gold
+        currency: золото
         amount: 10
 - id: onecheeseplease
   title: Кусочек сыра, пожалуйста

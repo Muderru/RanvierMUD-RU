@@ -66,7 +66,7 @@
   behaviors:
     sellable:
       value: 5
-      currency: gold
+      currency: золото
 - id: trainingsword
   name: "тренировочный меч"
   rname: "тренировочного меча"
@@ -94,7 +94,7 @@
   behaviors:
     sellable:
       value: 30
-      currency: gold
+      currency: золото
 - id: leathervest
   name: "кожаный жилет"
   rname: "кожаного жилета"
@@ -117,7 +117,7 @@
   behaviors:
     sellable:
       value: 30
-      currency: gold
+      currency: золото
 - id: potionhealth1
   name: "исцеляющее зелье I"
   rname: "исцеляющего зелья I"
@@ -222,7 +222,7 @@
   behaviors:
     sellable:
       value: 30
-      currency: gold
+      currency: золото
 - id: test_key
   name: "странный ключ"
   rname: "странного ключа"

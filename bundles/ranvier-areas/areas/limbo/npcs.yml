@@ -68,7 +68,7 @@
       # the currency key is arbitrary so if you want a new currency just add a new key
       # the key must be formatted_like_this though, for rendering/saving purposes
       currencies:
-        gold:
+        золото:
           min: 10
           max: 20
       # pools is a list of either a `"itemEntityReference": dropChance` or a name of a loot pool entry
@@ -102,7 +102,7 @@
     combat: true
     lootable:
       currencies:
-        gold:
+        золото:
           min: 50
           max: 100
       pools:
@@ -128,19 +128,19 @@
       items:
         "limbo:trainingsword":
           cost: 30
-          currency: gold
+          currency: золото
         "limbo:leathervest":
           cost: 30
-          currency: gold
+          currency: золото
         "limbo:woodenshield":
           cost: 30
-          currency: gold
+          currency: золото
         "limbo:potionhealth1":
           cost: 100
-          currency: gold
+          currency: золото
         "limbo:bladeofranvier":
           cost: 99999
-          currency: gold
+          currency: золото
       enterMessage: "Подходите! Покупайте великолепные товары!"
       leaveMessage: "Возвращайтесь обратно!"
 - id: aggro-player-test

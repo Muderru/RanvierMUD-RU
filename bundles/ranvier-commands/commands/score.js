@@ -105,7 +105,7 @@ module.exports = (srcPath) => {
       printStat('agility', false); // left
       say(sprintf('%36s', '.' + B.line(12) + '.')); // right
       printStat('intellect', false); // left
-      say(sprintf('%22s| <b>%10s</b> |', '', p.getMeta('currencies.gold') || 0)); // right
+      say(sprintf('%22s| <b>%10s</b> |', '', p.getMeta('currencies.золото') || 0)); // right
       printStat('stamina', false); // left
       say(sprintf('%36s', "'" + B.line(12) + "'")); // right
 
