@@ -13,7 +13,7 @@ module.exports = srcPath => {
 
     setupPlayer: player => {
       player.addAttribute('mana', 100);
-      player.prompt = '[ %health.current%/%health.max% <b>hp</b> %mana.current%/%mana.max% <b>mana</b> ]';
+      player.prompt = '[ <red><b>%health.current%/%health.max% хп</b></red> <blue><b>%mana.current%/%mana.max% мана</b></blue> ]';
     }
   };
 };
