@@ -201,7 +201,7 @@ class Combat {
    * @return {{max: number, min: number}}
    */
   static getWeaponDamage(attacker) {
-    const weapon = attacker.equipment.get('wield');
+    const weapon = attacker.equipment.get('правая рука');
     let min = 0, max = 0;
     if (weapon) {
       min = weapon.metadata.minDamage;
@@ -221,7 +221,7 @@ class Combat {
    */
   static getWeaponSpeed(attacker) {
     let speed = 2.0;
-    const weapon = attacker.equipment.get('wield');
+    const weapon = attacker.equipment.get('правая рука');
     if (!attacker.isNpc && weapon) {
       speed = weapon.metadata.speed;
     }

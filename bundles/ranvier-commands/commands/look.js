@@ -290,7 +290,7 @@ module.exports = (srcPath, bundlePath) => {
             return B.sayAt(player, `Закрыто.`);
           }
 
-          B.at(player, 'Contents');
+          B.at(player, 'Содержимое');
           if (isFinite(entity.inventory.getMax())) {
             B.at(player, ` (${entity.inventory.size}/${entity.inventory.getMax()})`);
           }

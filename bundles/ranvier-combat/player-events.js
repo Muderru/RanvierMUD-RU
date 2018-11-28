@@ -89,8 +89,8 @@ module.exports = (srcPath) => {
 
         B.sayAt(this, buf);
 
-        if (this.equipment.has('wield')) {
-          this.equipment.get('wield').emit('hit', damage, target);
+        if (this.equipment.has('правая рука')) {
+          this.equipment.get('правая рука').emit('hit', damage, target);
         }
 
         // show damage to party members

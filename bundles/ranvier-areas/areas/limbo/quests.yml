@@ -26,11 +26,11 @@
     - type: EquipGoal
       config:
         title: Вооружиться оружием
-        slot: wield
+        slot: правая рука
     - type: EquipGoal
       config:
         title: Надеть доспех
-        slot: chest
+        slot: тело
   rewards:
     - type: ExperienceReward
       config:

@@ -24,7 +24,7 @@ module.exports = (srcPath) => {
     cooldown,
 
     run: state => function (args, player, target) {
-      if (!player.equipment.has('wield')) {
+      if (!player.equipment.has('правая рука')) {
         return Broadcast.sayAt(player, "Вы не вооружены.");
       }
 
