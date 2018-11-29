@@ -81,15 +81,36 @@ module.exports = (srcPath) => {
         '%-24s',
         ' Характеристики'
       ) + '</green></b>');
-      say('.' + B.line(22) + '.');
+      say('.' + B.line(25) + '.');
 
 
       const printStat = (stat, newline = true) => {
         const val = stats[stat];
         const statColor = (val.current > val.base ? 'green' : 'white');
+        var ru_stat = '';
+        switch(stat) {
+            case 'strength':
+               ru_stat = 'Сила'
+               break;
+            case 'agility':
+               ru_stat = 'Ловкость'
+               break;
+            case 'intellect':
+               ru_stat = 'Интеллект'
+               break;
+            case 'stamina':
+               ru_stat = 'Выносливость'
+               break;
+            case 'armor':
+               ru_stat = 'Броня'
+               break;
+            case 'critical':
+               ru_stat = 'Крит.шанс'
+               break;   
+        }
         const str = sprintf(
-          `| %-9s : <b><${statColor}>%8s</${statColor}></b> |`,
-          stat[0].toUpperCase() + stat.slice(1),
+          `| %-12s : <b><${statColor}>%8s</${statColor}></b> |`,
+          ru_stat,
           val.current
         );
 
@@ -101,18 +122,18 @@ module.exports = (srcPath) => {
       };
 
       printStat('strength', false); // left
-      say('<b><green>' + sprintf('%36s', 'Золото ')); // right
+      say('<b><green>' + sprintf('%33s', 'Золото ')); // right
       printStat('agility', false); // left
-      say(sprintf('%36s', '.' + B.line(12) + '.')); // right
+      say(sprintf('%33s', '.' + B.line(12) + '.')); // right
       printStat('intellect', false); // left
-      say(sprintf('%22s| <b>%10s</b> |', '', p.getMeta('currencies.золото') || 0)); // right
+      say(sprintf('%19s| <b>%10s</b> |', '', p.getMeta('currencies.золото') || 0)); // right
       printStat('stamina', false); // left
-      say(sprintf('%36s', "'" + B.line(12) + "'")); // right
+      say(sprintf('%33s', "'" + B.line(12) + "'")); // right
 
-      say(':' + B.line(22) + ':');
+      say(':' + B.line(25) + ':');
       printStat('armor');
       printStat('critical');
-      say("'" + B.line(22) + "'");
+      say("'" + B.line(25) + "'");
     }
   };
 };
