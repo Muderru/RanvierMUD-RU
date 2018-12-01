@@ -10,6 +10,7 @@ const Logger = require('./Logger');
  * @property {number} id   Area-relative id (vnum)
  * @property {Area}   area Area npc belongs to (not necessarily the area they're currently in)
  * @property {Map} behaviors
+ * @property {string}  damageVerb сообщение о ударе
  * @extends Character
  */
 class Npc extends Character {
@@ -35,12 +36,8 @@ class Npc extends Character {
     this.pacifist = data.pacifist || false;
     this.quests = data.quests || [];
     this.uuid = data.uuid || uuid();
-    this.rname = data.rname;
-    this.dname = data.dname;
-    this.vname = data.vname;
-    this.tname = data.tname;
-    this.pname = data.pname;
-    this.gender = data.gender;
+    this.damageVerb = data.damageVerb;
+    
   }
 
 

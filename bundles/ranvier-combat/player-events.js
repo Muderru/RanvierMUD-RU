@@ -223,16 +223,19 @@ module.exports = (srcPath) => {
           buf += "Что-то";
         }
 
-        if (damage.attacker.gender === 'male') {
-           buf += ` ${damage.verb || 'ударил'} <b>вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
-        } else if (damage.attacker.gender === 'female') {
-           buf += ` ${damage.verb || 'ударила'} <b>вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
-        } else if (damage.attacker.gender === 'plural') {
-           buf += ` ${damage.verb || 'ударили'} <b>вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
-        } else {
-           buf += ` ${damage.verb || 'ударило'} <b>вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
+        if (!damage.attacker.damageVerb) {
+           if (damage.attacker.gender === 'male') {
+              damage.attacker.damageVerb = 'ударил';
+           } else if (damage.attacker.gender === 'female') {
+              damage.attacker.damageVerb = 'ударила';
+           } else if (damage.attacker.gender === 'plural') {
+              damage.attacker.damageVerb = 'ударили';
+           } else {
+              damage.attacker.damageVerb = 'ударило';
+           }
         }
 
+        buf += ` ${damage.attacker.damageVerb} <b>вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
 
         if (damage.critical) {
           buf += ' <red><b>(Критический удар)</b></red>';

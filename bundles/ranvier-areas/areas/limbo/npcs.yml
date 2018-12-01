@@ -57,7 +57,8 @@
   vname: "тренировочный манекен"
   tname: "тренировочным манекеном"
   pname: "тренировочном манекене"
-  gender: "male"  
+  gender: "male"
+  damageVerb: 'сокрушил'
   attributes:
     health: 100
     strength: 10
