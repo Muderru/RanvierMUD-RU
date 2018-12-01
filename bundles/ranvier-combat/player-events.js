@@ -320,28 +320,23 @@ module.exports = (srcPath) => {
        * @param {Character} killer
        */
       killed: state => function (killer) {
-        const Death = require('./lib/Death')(srcPath);
-        const Item = require(srcPath + 'Item');
-        const Logger = require(srcPath + 'Logger');
-
-        Logger.log(`${this.name} killed by ${killer && killer.name || 'something'} at ${this.room && this.room.entityReference}.`);          
-          
         this.removePrompt('combat');
+        var othersDeathMessage = '';
 
         if (this.gender === 'male') {
-          const othersDeathMessage = killer ?
+            othersDeathMessage = killer ?
             `<b><red>${this.name} повалился на землю, мертвый от рук ${killer.rname}.</b></red>` :
             `<b><red>${this.name} повалился на землю мертвый</b></red>`;
         } else if (this.gender === 'female') {
-          const othersDeathMessage = killer ?
+            othersDeathMessage = killer ?
             `<b><red>${this.name} повалилась на землю, мертвая от рук ${killer.rname}.</b></red>` :
             `<b><red>${this.name} повалилась на землю мертвая</b></red>`;
         } else if (this.gender === 'plural') {
-          const othersDeathMessage = killer ?
+            othersDeathMessage = killer ?
             `<b><red>${this.name} повалились на землю, мертвые от рук ${killer.rname}.</b></red>` :
             `<b><red>${this.name} повалились на землю мертвые</b></red>`;
         } else {
-          const othersDeathMessage = killer ?
+            othersDeathMessage = killer ?
             `<b><red>${this.name} повалилось на землю, мертвое от рук ${killer.rname}.</b></red>` :
             `<b><red>${this.name} повалилось на землю мертвое</b></red>`;
         }        
@@ -389,21 +384,7 @@ module.exports = (srcPath) => {
        * @param {Character} target
        */
       deathblow: state => function (target, skipParty) {
-        const xp = LevelUtil.weightedMobExp(this.level, target.level) + (target._xp || 0); // _xp is bonus from NPCs killing players or other NPCs.
-
-        if (!target.isNpc) xp *= 2;
-        this.setMeta('kills',
-          (this.getMeta('kills') || 0) + 1
-        );
-
-        const strongest = this.getMeta('strongestKilled') || { level: 0 };
-        if (target.level > strongest.level) {
-          this.setMeta('strongestKilled', {
-            name:  target.name,
-            level: target.level
-          });
-        }
-
+        const xp = LevelUtil.mobExp(target.level);
         if (this.party && !skipParty) {
           // if they're in a party proxy the deathblow to all members of the party in the same room.
           // this will make sure party members get quest credit trigger anything else listening for deathblow
