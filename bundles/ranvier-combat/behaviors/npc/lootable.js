@@ -13,6 +13,7 @@ module.exports = srcPath => {
       killed: state => function (config, killer) {
         const lootTable = new LootTable(state, config);
         const currencies = lootTable.currencies();
+        const resources = lootTable.resources();
         const items = lootTable.roll().map(
           item => state.ItemFactory.create(state.AreaManager.getAreaByReference(item), item)
         );
@@ -51,26 +52,47 @@ module.exports = srcPath => {
         this.room.addItem(corpse);
         state.ItemManager.add(corpse);
 
+        // Does this work if an NPC is in a player's party and kills something?
         if (killer && killer instanceof Player) {
           if (currencies) {
-            currencies.forEach(currency => {
-              // distribute currency among group members in the same room
-              const recipients = (killer.party ? [...killer.party] : [killer]).filter(recipient => {
-                return recipient.room === killer.room;
-              });
+            distribute(currencies, 'деньги');
+          }
+          if (resources) {
+            distribute(resources, 'ресурсы');
+          }
 
-              let remaining = currency.amount;
+          if (killer.getMeta('config.autoloot') === true) {
+            state.CommandManager.get('get').execute(this.keywords[0] || 'труп', killer, 'взятьвсе');
+          }
+
+          function distribute(distributables, type) {
+            distributables.forEach(distributable => {
+              const friendlyName = distributable.name.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+              const key = `${type}.${distributable.name}`;
+          
+              // distribute  among group members in the same room
+              const recipients = (killer.party ? [...killer.party] : [killer]).filter(recipient => {
+                return recipient.room === killer.room && !recipient.isNpc;
+              });
+          
+              let remaining = distributable.amount;
               for (const recipient of recipients) {
-                // Split currently evenly amount recipients.  The way the math works out the leader
-                // of the party will get any remainder if the currency isn't divisible evenly
+                // Split  evenly amount amongst recipients.  The way the math works out, the leader
+                // of the party will get any remainder if the distributable isn't divisible evenly
                 const amount = Math.floor(remaining / recipients.length) + (remaining % recipients.length);
                 remaining -= amount;
-
-                recipient.emit('currency', currency.name, amount);
-                state.CommandManager.get('look').execute(corpse.uuid, recipient);
+                if (amount < 1) continue;
+                B.sayAt(recipient, `<green>Вы получили ${type}: <b><white>[${friendlyName}]</white></b> x${amount}.</green>`);
+          
+                if (!recipient.getMeta(type)) {
+                  recipient.setMeta(type, {});
+                }
+                recipient.setMeta(key, (recipient.getMeta(key) || 0) + amount);
+                recipient.save();          
               }
             });
           }
+
         }
       }
     }

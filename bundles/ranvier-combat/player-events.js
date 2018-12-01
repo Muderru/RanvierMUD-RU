@@ -1,9 +1,9 @@
 'use strict';
-
 const Combat = require('./lib/Combat');
 const CombatErrors = require('./lib/CombatErrors');
 const LevelUtil = require('../ranvier-lib/lib/LevelUtil');
 const WebsocketStream = require('../ranvier-websocket/lib/WebsocketStream');
+const DamageType = require('./lib/DamageType');
 
 /**
  * Auto combat module
@@ -200,22 +200,39 @@ module.exports = (srcPath) => {
           this.combatData.killedBy = damage.attacker;
         }
 
+        
         let buf = '';
-        if (damage.attacker) { 
-              if (damage.attacker.gender === 'male') {
-                buf = `${damage.attacker.name} ударил`;
-              } else if (damage.attacker.gender === 'female') {
-                buf = `${damage.attacker.name} ударила`;
-              } else if (damage.attacker.gender === 'plural') {
-                buf = `${damage.attacker.name} ударили`;
-              } else {
-                buf = `${damage.attacker.name} ударило`;
-              }            
-           } else if (!damage.attacker) {
-             buf = "Что-то ударило";
-           }
+        if (damage.attacker) {
+          buf = `<b>${damage.attacker.name}</b>`;
+        }
 
-        buf += ` <b>Вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
+        if (damage.source) {
+          let source = damage.source.name;
+          let isNpc = damage.attacker && damage.attacker.isNpc;
+          if (isNpc) {
+            const Skill = require(srcPath + 'Skill');
+            const isSkill = damage.source instanceof Skill;
+            if (!isSkill) {
+              //TODO: get weapon first if exists.
+              source = damage.attacker.metadata.attackVerb || 'attack';
+            }
+          }
+
+          buf += (damage.attacker ? "'s " : " ") + `<b>${source}</b>`;
+        } else if (!damage.attacker) {
+          buf += "Что-то";
+        }
+
+        if (damage.attacker.gender === 'male') {
+           buf += ` ${damage.verb || 'ударил'} <b>вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
+        } else if (damage.attacker.gender === 'female') {
+           buf += ` ${damage.verb || 'ударила'} <b>вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
+        } else if (damage.attacker.gender === 'plural') {
+           buf += ` ${damage.verb || 'ударили'} <b>вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
+        } else {
+           buf += ` ${damage.verb || 'ударило'} <b>вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
+        }
+
 
         if (damage.critical) {
           buf += ' <red><b>(Критический удар)</b></red>';
@@ -286,7 +303,7 @@ module.exports = (srcPath) => {
         }
 
         for (const member of this.party) {
-          if (member === this || member.room !== this.room) {
+          if (member === this || member.room !== this.room || member === heal.attacker) {
             continue;
           }
 
@@ -300,6 +317,12 @@ module.exports = (srcPath) => {
        * @param {Character} killer
        */
       killed: state => function (killer) {
+        const Death = require('./lib/Death')(srcPath);
+        const Item = require(srcPath + 'Item');
+        const Logger = require(srcPath + 'Logger');
+
+        Logger.log(`${this.name} killed by ${killer && killer.name || 'something'} at ${this.room && this.room.entityReference}.`);          
+          
         this.removePrompt('combat');
 
         if (this.gender === 'male') {
@@ -363,7 +386,21 @@ module.exports = (srcPath) => {
        * @param {Character} target
        */
       deathblow: state => function (target, skipParty) {
-        const xp = LevelUtil.mobExp(target.level);
+        const xp = LevelUtil.weightedMobExp(this.level, target.level) + (target._xp || 0); // _xp is bonus from NPCs killing players or other NPCs.
+
+        if (!target.isNpc) xp *= 2;
+        this.setMeta('kills',
+          (this.getMeta('kills') || 0) + 1
+        );
+
+        const strongest = this.getMeta('strongestKilled') || { level: 0 };
+        if (target.level > strongest.level) {
+          this.setMeta('strongestKilled', {
+            name:  target.name,
+            level: target.level
+          });
+        }
+
         if (this.party && !skipParty) {
           // if they're in a party proxy the deathblow to all members of the party in the same room.
           // this will make sure party members get quest credit trigger anything else listening for deathblow

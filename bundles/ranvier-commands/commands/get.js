@@ -7,8 +7,8 @@ module.exports = (srcPath, bundlePath) => {
   const ItemUtil = require(bundlePath + 'ranvier-lib/lib/ItemUtil');
 
   return {
-    usage: 'get <item> [container]',
-    aliases: [ 'взять' ],
+    usage: 'взять <предмет> [контейнер]',
+    aliases: [ 'взять', 'взятьвсе' ],
     command : (state) => (args, player, arg0) => {
       if (!args.length) {
         return Broadcast.sayAt(player, 'Взять что?');
@@ -23,9 +23,9 @@ module.exports = (srcPath, bundlePath) => {
       }
 
       // 'loot' is an alias for 'get all'
-      //if (arg0 === 'loot') {
-      //  args = ('all ' + args).trim();
-      // }
+      if (arg0 === 'взятьвсе') {
+        args = ('все ' + args).trim();
+      }
 
       // get 3.foo from bar -> get 3.foo bar
       let parts = args.split(' ').filter(arg => !arg.match(/из/));
