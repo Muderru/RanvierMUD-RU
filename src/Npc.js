@@ -11,6 +11,7 @@ const Logger = require('./Logger');
  * @property {Area}   area Area npc belongs to (not necessarily the area they're currently in)
  * @property {Map} behaviors
  * @property {string}  damageVerb сообщение о ударе
+ * @property {string}  travelVerb сообщение о передвижении 
  * @extends Character
  */
 class Npc extends Character {
@@ -37,7 +38,7 @@ class Npc extends Character {
     this.quests = data.quests || [];
     this.uuid = data.uuid || uuid();
     this.damageVerb = data.damageVerb;
-    
+    this.travelVerb = data.travelVerb;
   }
 
 

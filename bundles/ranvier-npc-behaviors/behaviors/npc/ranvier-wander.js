@@ -85,15 +85,20 @@ module.exports = srcPath => {
         }
 
         Logger.verbose(`NPC [${this.uuid}] wandering from ${this.room.entityReference} to ${randomRoom.entityReference}.`);
-        if (this.gender === 'male') {
-          Broadcast.sayAt(this.room, `${this.name} убежал на ${direction}.`);
-        } else if (this.gender === 'female') {
-          Broadcast.sayAt(this.room, `${this.name} убежала на ${direction}.`);
-        } else if (this.gender === 'plural') {
-          Broadcast.sayAt(this.room, `${this.name} убежали на ${direction}.`);
-        } else {
-          Broadcast.sayAt(this.room, `${this.name} убежало на ${direction}.`);
+        
+        if (!this.travelVerb) {
+            if (this.gender === 'male') {
+                this.travelVerb = 'убежал';
+            } else if (this.gender === 'female') {
+                this.travelVerb = 'убежала';
+            } else if (this.gender === 'plural') {
+                this.travelVerb = 'убежали';
+            } else {
+                this.travelVerb = 'убежало';
+            }
         }
+        Broadcast.sayAt(this.room, `${this.name} ${this.travelVerb} на ${direction}.`);
+ 
         this.moveTo(randomRoom);
       }
     }
