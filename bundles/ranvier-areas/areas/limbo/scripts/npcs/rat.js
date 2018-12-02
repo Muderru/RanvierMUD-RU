@@ -21,7 +21,7 @@ module.exports = (srcPath) => {
 
         const target = [...this.combatants][0];
 
-        const rend = state.SkillManager.get('rend');
+        const rend = state.SkillManager.get('рваная_рана');
         // skills do both of these checks internally but I only want to send
         // this message when execute would definitely succeed
         if (!rend.onCooldown(this) && rend.hasEnoughResources(this)) {

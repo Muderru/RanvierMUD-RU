@@ -6,7 +6,8 @@
   vname: "крысу"
   tname: "крысой"
   pname: "крысе"
-  gender: "female"  
+  gender: "female"
+  damageVerb: 'укусила'
   level: 2
   description: "Глаза крысы горят зловещим красным огнем. С ее пасти капает пена, а огромные когти царапают пол."
   script: 'rat'

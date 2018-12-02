@@ -204,6 +204,17 @@ module.exports = (srcPath) => {
         let buf = '';
         if (damage.attacker) {
           buf = `<b>${damage.attacker.name}</b>`;
+          if (!damage.attacker.damageVerb) {
+           if (damage.attacker.gender === 'male') {
+              damage.attacker.damageVerb = 'поранил';
+           } else if (damage.attacker.gender === 'female') {
+              damage.attacker.damageVerb = 'поранила';
+           } else if (damage.attacker.gender === 'plural') {
+              damage.attacker.damageVerb = 'поранили';
+           } else {
+              damage.attacker.damageVerb = 'поранило';
+           }
+          }          
         }
 
         if (damage.source) {
@@ -214,28 +225,22 @@ module.exports = (srcPath) => {
             const isSkill = damage.source instanceof Skill;
             if (!isSkill) {
               //TODO: get weapon first if exists.
-              source = damage.attacker.metadata.attackVerb || 'attack';
+              source = damage.attacker.metadata.attackVerb || '';
             }
           }
 
-          buf += (damage.attacker ? "'s " : " ") + `<b>${source}</b>`;
+          buf += `<b>${source}</b>`;
         } else if (!damage.attacker) {
           buf += "Что-то";
         }
 
-        if (!damage.attacker.damageVerb) {
-           if (damage.attacker.gender === 'male') {
-              damage.attacker.damageVerb = 'ударил';
-           } else if (damage.attacker.gender === 'female') {
-              damage.attacker.damageVerb = 'ударила';
-           } else if (damage.attacker.gender === 'plural') {
-              damage.attacker.damageVerb = 'ударили';
-           } else {
-              damage.attacker.damageVerb = 'ударило';
-           }
+
+        if (damage.attacker) {
+            buf += ` ${damage.attacker.damageVerb} <b>вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
+        } else {
+            buf += ` <b>:</b> <b><red>${damage.finalAmount}</red></b> урона.`;
         }
 
-        buf += ` ${damage.attacker.damageVerb} <b>вас</b> на <b><red>${damage.finalAmount}</red></b> урона.`;
 
         if (damage.critical) {
           buf += ' <red><b>(Критический удар)</b></red>';
