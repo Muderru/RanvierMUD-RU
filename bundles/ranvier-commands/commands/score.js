@@ -22,6 +22,26 @@ module.exports = (srcPath) => {
         armor: 0,
         health: 0,
         critical: 0,
+        cutting_resistance: 0,
+        crushing_resistance: 0,
+        piercing_resistance: 0,
+        fire_resistance: 0,
+        cold_resistance: 0,
+        lightning_resistance: 0,
+        earth_resistance: 0,
+        acid_resistance: 0,
+        chaos_resistance: 0,
+        ether_resistance: 0,
+        cutting_damage: 0,
+        crushing_damage: 0,
+        piercing_damage: 0,
+        fire_damage: 0,
+        cold_damage: 0,
+        lightning_damage: 0,
+        earth_damage: 0,
+        acid_damage: 0,
+        chaos_damage: 0,
+        ether_damage: 0,
       };
 
       for (const stat in stats) {
@@ -40,21 +60,21 @@ module.exports = (srcPath) => {
 
       // class resource
       switch (p.playerClass.id) {
-        case 'воин':
+        case 'warrior':
           const energy = {
             current: p.getAttribute('energy'),
             max: p.getMaxAttribute('energy')
           };
           B.at(p, sprintf(' %-9s: %12s', 'Бодрость', `${energy.current}/${energy.max}`));
           break;
-        case 'маг':
+        case 'mage':
           const mana = {
             current: p.getAttribute('mana'),
             max: p.getMaxAttribute('mana')
           };
           B.at(p, sprintf(' %-9s: %12s', 'Мана', `${mana.current}/${mana.max}`));
           break;
-        case 'паладин':
+        case 'paladin':
           const favor = {
             current: p.getAttribute('favor'),
             max: p.getMaxAttribute('favor')
@@ -106,7 +126,67 @@ module.exports = (srcPath) => {
                break;
             case 'critical':
                ru_stat = 'Крит.шанс'
-               break;   
+               break;
+            case 'cutting_resistance':
+               ru_stat = 'Режущее'
+               break;
+            case 'crushing_resistance':
+               ru_stat = 'Дробящее'
+               break;
+            case 'piercing_resistance':
+               ru_stat = 'Колющее'
+               break;
+            case 'fire_resistance':
+               ru_stat = 'Огонь'
+               break;
+            case 'cold_resistance':
+               ru_stat = 'Холод'
+               break;
+            case 'lightning_resistance':
+               ru_stat = 'Молния'
+               break;
+            case 'earth_resistance':
+               ru_stat = 'Земля'
+               break;
+            case 'acid_resistance':
+               ru_stat = 'Кислота'
+               break;               
+            case 'chaos_resistance':
+               ru_stat = 'Хаос'
+               break;
+            case 'ether_resistance':
+               ru_stat = 'Эфир'
+               break;
+            case 'cutting_damage':
+               ru_stat = 'Режущий'
+               break;
+            case 'crushing_damage':
+               ru_stat = 'Дробящий'
+               break;
+            case 'piercing_damage':
+               ru_stat = 'Колющий'
+               break;
+            case 'fire_damage':
+               ru_stat = 'Огонь'
+               break;
+            case 'cold_damage':
+               ru_stat = 'Холод'
+               break;
+            case 'lightning_damage':
+               ru_stat = 'Молния'
+               break;
+            case 'earth_damage':
+               ru_stat = 'Земля'
+               break;
+            case 'acid_damage':
+               ru_stat = 'Кислота'
+               break;               
+            case 'chaos_damage':
+               ru_stat = 'Хаос'
+               break;
+            case 'ether_damage':
+               ru_stat = 'Эфир'
+               break;               
         }
         const str = sprintf(
           `| %-12s : <b><${statColor}>%8s</${statColor}></b> |`,
@@ -134,6 +214,32 @@ module.exports = (srcPath) => {
       printStat('armor');
       printStat('critical');
       say("'" + B.line(25) + "'");
+      say('<b><green>' + sprintf(
+        '%-24s',
+        ' Доп. урон                   Сопротивления'
+      ) + '</green></b>');
+      say('.' + B.line(52) + '.');      
+      printStat('cutting_damage', false);
+      printStat('cutting_resistance');
+      printStat('crushing_damage', false);
+      printStat('crushing_resistance');
+      printStat('piercing_damage', false);
+      printStat('piercing_resistance');
+      printStat('fire_damage', false);
+      printStat('fire_resistance');
+      printStat('cold_damage', false);
+      printStat('cold_resistance');
+      printStat('lightning_damage', false);
+      printStat('lightning_resistance');
+      printStat('earth_damage', false);
+      printStat('earth_resistance');
+      printStat('acid_damage', false);
+      printStat('acid_resistance');
+      printStat('chaos_damage', false);
+      printStat('chaos_resistance');
+      printStat('ether_damage', false);
+      printStat('ether_resistance');
+      say('.' + B.line(52) + '.');      
     }
   };
 };

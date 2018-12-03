@@ -1,36 +1,116 @@
 {
   "attributes": {
+    "health": {
+      "delta": 0,
+      "base": 100
+    },
     "strength": {
       "delta": 0,
-      "base": 17
+      "base": 20
     },
     "agility": {
       "delta": 0,
-      "base": 10
+      "base": 20
     },
     "intellect": {
       "delta": 0,
-      "base": 8
+      "base": 20
     },
     "stamina": {
       "delta": 0,
-      "base": 11
-    },
-    "health": {
-      "delta": 0,
-      "base": 154
+      "base": 20
     },
     "armor": {
+      "delta": 0,
+      "base": 0
+    },
+    "critical": {
+      "delta": 0,
+      "base": 0
+    },
+    "cutting_resistance": {
+      "delta": 0,
+      "base": 0
+    },
+    "crushing_resistance": {
+      "delta": 0,
+      "base": 0
+    },
+    "piercing_resistance": {
+      "delta": 0,
+      "base": 0
+    },
+    "fire_resistance": {
+      "delta": 0,
+      "base": 0
+    },
+    "cold_resistance": {
+      "delta": 0,
+      "base": 0
+    },
+    "lightning_resistance": {
+      "delta": 0,
+      "base": 0
+    },
+    "earth_resistance": {
+      "delta": 0,
+      "base": 0
+    },
+    "acid_resistance": {
+      "delta": 0,
+      "base": 0
+    },
+    "chaos_resistance": {
+      "delta": 0,
+      "base": 0
+    },
+    "ether_resistance": {
+      "delta": 0,
+      "base": 0
+    },
+    "cutting_damage": {
+      "delta": 0,
+      "base": 0
+    },
+    "crushing_damage": {
+      "delta": 0,
+      "base": 0
+    },
+    "piercing_damage": {
+      "delta": 0,
+      "base": 0
+    },
+    "fire_damage": {
+      "delta": 0,
+      "base": 0
+    },
+    "cold_damage": {
+      "delta": 0,
+      "base": 0
+    },
+    "lightning_damage": {
+      "delta": 0,
+      "base": 0
+    },
+    "earth_damage": {
+      "delta": 0,
+      "base": 0
+    },
+    "acid_damage": {
+      "delta": 0,
+      "base": 0
+    },
+    "chaos_damage": {
+      "delta": 0,
+      "base": 0
+    },
+    "ether_damage": {
       "delta": 0,
       "base": 0
     },
     "energy": {
       "delta": 0,
       "base": 100
-    },
-    "critical": {
-      "delta": 0,
-      "base": 0
     }
   },
   "level": 1,

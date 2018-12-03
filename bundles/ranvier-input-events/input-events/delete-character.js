@@ -23,9 +23,9 @@ module.exports = (srcPath) => {
       let options = [];
       characters.forEach(char => {
         options.push({
-          display: `Delete <b>${char.username}</b>`,
+          display: `Удалить <b>${char.username}</b>`,
           onSelect: () => {
-            write(`<bold>Are you sure you want to delete <b>${char.username}</b>?</bold> <cyan>[Y/n]</cyan> `);
+            write(`<bold>Вы уверены, что хотите удалить <b>${char.username}</b>?</bold> <cyan>[д/н]</cyan> `);
             socket.once('data', confirmation => {
               say('');
               confirmation = confirmation.toString().trim().toLowerCase();

@@ -27,7 +27,27 @@ module.exports = (srcPath) => {
           intellect: 20,
           stamina: 20,
           armor: 0,
-          critical: 0
+          critical: 0,
+          cutting_resistance: 0,
+          crushing_resistance: 0,
+          piercing_resistance: 0,
+          fire_resistance: 0,
+          cold_resistance: 0,
+          lightning_resistance: 0,
+          earth_resistance: 0,
+          acid_resistance: 0,
+          chaos_resistance: 0,
+          ether_resistance: 0,
+          cutting_damage: 0,
+          crushing_damage: 0,
+          piercing_damage: 0,
+          fire_damage: 0,
+          cold_damage: 0,
+          lightning_damage: 0,
+          earth_damage: 0,
+          acid_damage: 0,
+          chaos_damage: 0,
+          ether_damage: 0
         }
       });
 

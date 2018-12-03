@@ -20,6 +20,7 @@
     speed: 2.8
     stats:
       critical: 1
+      cutting_damage: 1
 - id: "sliceofcheese"
   name: "ломтик сыра"
   rname: "ломтика сыра"
