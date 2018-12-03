@@ -39,6 +39,7 @@ class Npc extends Character {
     this.uuid = data.uuid || uuid();
     this.damageVerb = data.damageVerb;
     this.travelVerb = data.travelVerb;
+    this.NpcRace = data.NpcRace  || null;
   }
 
 

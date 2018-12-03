@@ -8,6 +8,7 @@
   pname: "крысе"
   gender: "female"
   damageVerb: 'укусила'
+  NpcRace: "animal"
   level: 2
   description: "Глаза крысы горят зловещим красным огнем. С ее пасти капает пена, а огромные когти царапают пол."
   script: 'rat'
