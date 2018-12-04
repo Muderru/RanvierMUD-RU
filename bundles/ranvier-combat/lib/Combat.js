@@ -91,8 +91,54 @@ class Combat {
    * @param {Character} target
    */
   static makeAttack(attacker, target) {
-    const amount = this.calculateWeaponDamage(attacker);
-    const damage = new Damage({ attribute: 'health', amount, attacker });
+    let addDamage = 0;
+      
+    if (attacker.getAttribute('cutting_damage') > target.getAttribute('cutting_resistance')) {
+        addDamage += attacker.getAttribute('cutting_damage') - target.getAttribute('cutting_resistance');
+    }
+      
+    if (attacker.getAttribute('crushing_damage') > target.getAttribute('crushing_resistance')) {
+        addDamage += attacker.getAttribute('crushing_damage') - target.getAttribute('crushing_resistance');
+    }
+    
+    if (attacker.getAttribute('piercing_damage') > target.getAttribute('piercing_resistance')) {
+        addDamage += attacker.getAttribute('piercing_damage') - target.getAttribute('piercing_resistance');
+    }
+    
+    if (attacker.getAttribute('fire_damage') > target.getAttribute('fire_resistance')) {
+        addDamage += attacker.getAttribute('fire_damage') - target.getAttribute('fire_resistance');
+    }
+    
+    if (attacker.getAttribute('cold_damage') > target.getAttribute('cold_resistance')) {
+        addDamage += attacker.getAttribute('cold_damage') - target.getAttribute('cold_resistance');
+    }
+    
+    if (attacker.getAttribute('lightning_damage') > target.getAttribute('lightning_resistance')) {
+        addDamage += attacker.getAttribute('lightning_damage') - target.getAttribute('lightning_resistance');
+    }
+    
+    if (attacker.getAttribute('earth_damage') > target.getAttribute('earth_resistance')) {
+        addDamage += attacker.getAttribute('earth_damage') - target.getAttribute('earth_resistance');
+    }
+    
+    if (attacker.getAttribute('acid_damage') > target.getAttribute('acid_resistance')) {
+        addDamage += attacker.getAttribute('acid_damage') - target.getAttribute('acid_resistance');
+    }
+    
+    if (attacker.getAttribute('chaos_damage') > target.getAttribute('chaos_resistance')) {
+        addDamage += attacker.getAttribute('chaos_damage') - target.getAttribute('chaos_resistance');
+    }
+    
+    if (attacker.getAttribute('ether_damage') > target.getAttribute('ether_resistance')) {
+        addDamage += attacker.getAttribute('ether_damage') - target.getAttribute('ether_resistance');
+    }
+      
+    let amount = this.calculateWeaponDamage(attacker);
+//    Logger.log(`Начальный урон ${amount}`);      
+    amount += addDamage;
+    const damage = new Damage({ attribute: 'health', amount, attacker });    
+    
+//    Logger.log(`Конечный урон ${amount}, добавка ${addDamage}`);
     damage.commit(target);
 
     if (target.getAttribute('health') <= 0) {

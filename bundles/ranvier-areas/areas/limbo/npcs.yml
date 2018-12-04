@@ -64,6 +64,7 @@
   attributes:
     health: 100
     strength: 10
+    cutting_resistance: 1
   behaviors:
     combat: true
     lootable:
