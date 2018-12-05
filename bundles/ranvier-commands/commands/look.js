@@ -14,7 +14,7 @@ module.exports = (srcPath, bundlePath) => {
 
   return {
     usage: "смотреть [объект]",
-    aliases: ['смотреть'],
+    aliases: ['смотреть', 'осмотреть'],
     command: state => (args, player) => {
       if (!player.room) {
         Logger.error(player.getName() + ' в бездне.');

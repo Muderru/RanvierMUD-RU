@@ -30,7 +30,7 @@ class Player extends Character {
     this.extraPrompts = new Map();
     this.password  = data.password;
     this.playerClass = null;
-    this.prompt = data.prompt || '[ %health.current%/%health.max% <bold>hp</bold> ]';
+    this.prompt = data.prompt || '[ %health.current%/%health.max% <bold>хп</bold> ]';
     this.socket = data.socket || null;
     const questData = Object.assign({
       completed: [],
@@ -83,7 +83,7 @@ class Player extends Character {
     const promptData = Object.assign(attributeData, extraData);
 
     let matches = null;
-    while (matches = promptStr.match(/%([a-z\.]+)%/)) {
+    while (matches = promptStr.match(/%([a-я\.]+)%/)) {
       const token = matches[1];
       let promptValue = token.split('.').reduce((obj, index) => obj && obj[index], promptData);
       if (promptValue === null || promptValue === undefined) {
