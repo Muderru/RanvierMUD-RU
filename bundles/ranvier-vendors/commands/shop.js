@@ -164,7 +164,7 @@ module.exports = (srcPath, bundlePath) => {
   // check sell value of an item
   subcommands.add({
     name: 'value',    
-    aliases: [ 'цена', 'оценить', 'предложить' ],
+    aliases: [ 'цена', 'предложить' ],
     command: state => (vendor, args, player) => {
       const tell = genTell(state, vendor, player);
 
@@ -190,8 +190,8 @@ module.exports = (srcPath, bundlePath) => {
   });
 
   return {
-    aliases: [ 'торговец', 'список', 'купить', 'продать', 'цена', 'оценить', 'предложить' ],
-    usage: 'список [поиск], купить <вещь>, продать <вещь>, оценить <вещь>',
+    aliases: [ 'торговец', 'список', 'купить', 'продать', 'цена', 'предложить' ],
+    usage: 'список [поиск], купить <вещь>, продать <вещь>, цена <вещь>',
     command: state => (args, player, arg0) => {
       // if list/buy aliases were used then prepend that to the args
       args = (!['торговец', 'магазин'].includes(arg0) ? arg0 + ' ' : '') + args;

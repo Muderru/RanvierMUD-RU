@@ -7,7 +7,7 @@ module.exports = srcPath => {
 
   return {
     usage: 'бежать [направление]',
-    aliases: ['бежать', 'убежать'],
+    aliases: ['бежать', 'убежать', 'сбежать'],
     command: state => (direction, player) => {
       if (!player.isInCombat()) {
         return say(player, "Вы вздрагиваете от вида собственной тени.");
