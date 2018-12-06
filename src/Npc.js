@@ -7,11 +7,13 @@ const Config = require('./Config');
 const Logger = require('./Logger');
 
 /**
- * @property {number} id   Area-relative id (vnum)
- * @property {Area}   area Area npc belongs to (not necessarily the area they're currently in)
+ * @property {number}  id   Area-relative id (vnum)
+ * @property {Area}    area Area npc belongs to (not necessarily the area they're currently in)
  * @property {Map} behaviors
  * @property {string}  damageVerb сообщение о ударе
- * @property {string}  travelVerb сообщение о передвижении 
+ * @property {string}  travelVerb сообщение о передвижении
+ * @property {number}  min_damage   Минимальный базовый урон
+ * @property {number}  max_damage   Максимальный базовый урон 
  * @extends Character
  */
 class Npc extends Character {
@@ -40,6 +42,8 @@ class Npc extends Character {
     this.damageVerb = data.damageVerb;
     this.travelVerb = data.travelVerb;
     this.NpcRace = data.NpcRace  || null;
+    this.min_damage = data.min_damage  || 1;
+    this.max_damage = data.max_damage  || 1;
   }
 
 

@@ -9,6 +9,8 @@
   gender: "female"
   damageVerb: 'укусила'
   NpcRace: "animal"
+  min_damage: 15
+  max_damage: 30
   level: 2
   description: "Глаза крысы горят зловещим красным огнем. С ее пасти капает пена, а огромные когти царапают пол."
   script: 'rat'
@@ -30,7 +32,9 @@
   vname: "мудрого старика"
   tname: "мудрым стариком"
   pname: "мудром старике"
-  gender: "male"  
+  gender: "male"
+  min_damage: 1500
+  max_damage: 3000
   level: 99
   script: 'old-man'
   pacifist: true
@@ -61,6 +65,8 @@
   pname: "тренировочном манекене"
   gender: "male"
   damageVerb: 'сокрушил'
+  min_damage: 10
+  max_damage: 20
   attributes:
     health: 100
     strength: 10
@@ -95,7 +101,9 @@
   tname: "манекеном босса"
   pname: "манекене босса"
   gender: "male"  
-  level: 5
+  level: 3
+  min_damage: 20
+  max_damage: 30
   description: >-
     Этот манекен значительно больше, чем остальные в этой области. Он приводится в движение каким-то скрытым механизмом,
     испускающим струи горячего пара. Там где у остальных манекенов висит цель, у этого знак в виде черепа с перекрещенными костями.
@@ -156,7 +164,9 @@
   vname: "агрессивный манекен"
   tname: "агрессивным манекеном"
   pname: "агрессивном манекене"
-  gender: "male" 
+  gender: "male"
+  min_damage: 12
+  max_damage: 22
   description: >-
     Этот манекен атакует любого игрока, осмелившегося подойти близко. Поэтому соблюдайте осторожность!
   attributes:
@@ -176,6 +186,8 @@
   tname: "агрессивным манекеном"
   pname: "агрессивном манекене"
   gender: "male"
+  min_damage: 10
+  max_damage: 20
   description: >-
     Этот манекен атакует остальных мобов, но не игроков.
   attributes:

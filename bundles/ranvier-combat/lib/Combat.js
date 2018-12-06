@@ -132,9 +132,20 @@ class Combat {
     if (attacker.getAttribute('ether_damage') > target.getAttribute('ether_resistance')) {
         addDamage += attacker.getAttribute('ether_damage') - target.getAttribute('ether_resistance');
     }
-      
+    
     let amount = this.calculateWeaponDamage(attacker);
-//    Logger.log(`Начальный урон ${amount}`);      
+    
+    if (attacker.isNpc) {
+        amount = Math.round(attacker.min_damage + Math.random()*(attacker.max_damage - attacker.min_damage));
+    }
+//    Logger.log(`Начальный урон ${amount}`);    
+    if (amount > target.getAttribute('armor')) {
+        amount = Math.floor(1 + ((amount - target.getAttribute('armor'))*(amount - target.getAttribute('armor'))/(amount + target.getAttribute('armor'))));
+    } else {
+        amount = 1;
+    }
+    
+//    Logger.log(`Урон без добавок ${amount}`);      
     amount += addDamage;
     const damage = new Damage({ attribute: 'health', amount, attacker });    
     

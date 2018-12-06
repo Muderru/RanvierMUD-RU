@@ -107,7 +107,7 @@ module.exports = (srcPath) => {
       const printStat = (stat, newline = true) => {
         const val = stats[stat];
         const statColor = (val.current > val.base ? 'green' : 'white');
-        var ru_stat = '';
+        let ru_stat = '';
         switch(stat) {
             case 'strength':
                ru_stat = 'Сила'
