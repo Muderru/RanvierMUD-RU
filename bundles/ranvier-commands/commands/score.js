@@ -85,6 +85,7 @@ module.exports = (srcPath) => {
           B.at(p, B.line(24, ' '));
           break;
       }
+      
       say(sprintf('%35s', '.' + B.line(22)) + '.');
 
       B.at(p, sprintf('%37s', '|'));
@@ -239,7 +240,9 @@ module.exports = (srcPath) => {
       printStat('chaos_resistance');
       printStat('ether_damage', false);
       printStat('ether_resistance');
-      say('.' + B.line(52) + '.');      
+      say('.' + B.line(52) + '.');
+      
+      B.at(p, sprintf(' %-9s: %2s', '<b><green>Очки характеристик', `</green></b>${p.getMeta('attributePoints')}`));
     }
   };
 };

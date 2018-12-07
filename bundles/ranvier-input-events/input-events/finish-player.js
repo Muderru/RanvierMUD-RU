@@ -55,6 +55,7 @@ module.exports = (srcPath) => {
       args.account.save();
 
       player.setMeta('class', args.playerClass);
+      player.setMeta('attributePoints', 0);
 
       const room = state.RoomManager.startingRoom;
       player.room = room;

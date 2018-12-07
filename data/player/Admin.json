@@ -129,7 +129,8 @@
     "max": 16
   },
   "metadata": {
-    "class": "warrior"
+    "class": "warrior",
+    "attributePoints": 0
   },
   "playerClass": "warrior",
   "prompt": "[ %health.current%/%health.max% <b>hp</b> %energy.current%/%energy.max% <b>energy</b> ]",

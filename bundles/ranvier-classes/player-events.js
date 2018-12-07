@@ -81,6 +81,35 @@ module.exports = srcPath => {
        */
       level: state => function () {
         const abilities = this.playerClass.abilityTable;
+        const attributePoints = this.getMeta('attributePoints');
+        const hp = this.attributes.get('health');
+        let increment = 0;
+        increment += this.getBaseAttribute('stamina'); // or however much you want it to go up on leveling
+
+        if (hp) {
+            hp.setBase(hp.base + increment);
+//            B.sayAt(this, `<b>Leveling has boosted ${hp.name} to ${hp.base}!`);
+        }
+        
+        this.setMeta('attributePoints', attributePoints + 1);
+        
+        if (this.hasAttribute('mana')) {
+            let mana = this.attributes.get('mana');
+            let mana_add = 0;
+            mana_add += this.getBaseAttribute('intellect');
+            mana.setBase(mana.base + mana_add);
+        } else if (this.hasAttribute('energy')) {
+            let energy = this.attributes.get('energy');
+            let energy_add = 0;
+            energy_add += this.getBaseAttribute('agility');
+            energy.setBase(energy.base + energy_add);
+        } else if (this.hasAttribute('favor')) {
+            let favor = this.attributes.get('favor');
+            let favor_add = 0;
+            favor_add += Math.round((this.getBaseAttribute('strength') + this.getBaseAttribute('intellect'))/10);
+            favor.setBase(favor.base + favor_add);
+        }
+        
         if (!(this.level in this.playerClass.abilityTable)) {
           return;
         }
@@ -97,6 +126,8 @@ module.exports = srcPath => {
           const spell = state.SpellManager.get(abilityId);
           B.sayAt(this, `<bold><yellow>Теперь вы можете использовать заклинание: ${spell.name}.</yellow></bold>`);
         }
+        
+        
       }
     }
   };
