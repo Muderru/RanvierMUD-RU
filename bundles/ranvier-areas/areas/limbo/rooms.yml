@@ -160,7 +160,7 @@
     "limbo:ancientwayshrine":
       lockedWith: false
       closed: true
-- id: 11
+- id: locked
   title: "Закрытая комната"
   description: Эта комната ничем не примечательна, но чтобы попасть сюда, ее понадобится открыть ключом.
   items:

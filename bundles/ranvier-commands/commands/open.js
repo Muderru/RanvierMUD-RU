@@ -71,7 +71,7 @@ module.exports = (srcPath, bundlePath) => {
 
         if (door) {
           switch (action) {
-            case 'open': {
+            case 'открыть': {
               if (door.locked) {
                 if (door.lockedBy) {
                   const playerKey = player.hasItem(door.lockedBy);
