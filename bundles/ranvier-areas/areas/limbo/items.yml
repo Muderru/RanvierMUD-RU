@@ -219,7 +219,7 @@
     level: 1
     itemLevel: 1
     stats:
-      armor: 10
+      armor: 1
   behaviors:
     sellable:
       value: 30

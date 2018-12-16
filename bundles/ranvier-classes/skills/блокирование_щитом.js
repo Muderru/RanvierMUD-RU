@@ -26,7 +26,7 @@ module.exports = (srcPath) => {
     cooldown,
 
     run: state => function (args, player, target) {
-      if (!player.equipment.has('shield')) {
+      if (!player.equipment.has('щит')) {
         Broadcast.sayAt(player, "Вы не держите щит!");
         return false;
       }

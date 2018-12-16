@@ -247,7 +247,7 @@ module.exports = (srcPath, bundlePath) => {
 
     if (entity instanceof Player) {
       // TODO: Show player equipment?
-      B.sayAt(player, `You see fellow player ${entity.name}.`);
+      B.sayAt(player, `Это другой игрок ${entity.name}.`);
       return;
     }
 
